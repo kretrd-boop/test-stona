@@ -1,0 +1,195 @@
+/* ═══════════════════════════════════════════════════
+   Mansard — site.css
+   Wspólne style dla wszystkich podstron mansard.pl
+   Fonty i Tailwind ładowane w <head> każdej strony.
+   ═══════════════════════════════════════════════════ */
+
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'DM Sans',ui-sans-serif,system-ui,sans-serif;color:#1a1a1a;background:#fff}
+h1,h2,h3,h4,h5,h6{font-family:'Inter',ui-sans-serif,system-ui,sans-serif}
+
+/* ── NAV ─────────────────────────────────────────── */
+.nav-link{color:rgba(255,255,255,0.85);font-size:16px;font-weight:600;transition:color .15s;padding:6px 6px;white-space:nowrap}
+.nav-link:hover{color:#fff}
+
+.nav-item{position:relative}
+.nav-trigger{display:flex;align-items:center;gap:5px;color:rgba(255,255,255,0.85);font-size:16px;font-weight:600;padding:6px 6px;cursor:pointer;background:none;border:none;transition:color .15s;white-space:nowrap;font-family:inherit}
+.nav-trigger:hover,.nav-trigger.active{color:#fff}
+.nav-trigger svg{transition:transform .25s ease;flex-shrink:0}
+.nav-trigger.active svg{transform:rotate(180deg)}
+
+/* scrolled — white nav */
+#mainHeader.scrolled .nav-link{color:#374151}
+#mainHeader.scrolled .nav-link:hover{color:#111827}
+#mainHeader.scrolled .nav-trigger{color:#374151}
+#mainHeader.scrolled .nav-trigger:hover,#mainHeader.scrolled .nav-trigger.active{color:#111827}
+
+.nav-dropdown{position:absolute;top:100%;left:50%;transform:translateX(-50%);background:#f0f2f5;border:1px solid #dde0e6;border-radius:14px;padding:8px 0 0;min-width:260px;box-shadow:0 8px 32px rgba(0,0,0,0.14);opacity:0;visibility:hidden;transition:opacity .2s ease,transform .2s ease,visibility .2s;transform:translateX(-50%) translateY(-6px);z-index:100;overflow:hidden}
+.nav-dropdown.open{opacity:1;visibility:visible;transform:translateX(-50%) translateY(0)}
+
+/* mega dropdown (Produkty) */
+.nav-dropdown-mega{left:0;transform:translateY(-6px);display:flex;width:640px}
+.nav-dropdown-mega.open{transform:translateY(0)}
+.nav-dropdown-list{flex:1;padding:0 8px 8px;min-width:0}
+.nav-dropdown-preview{width:240px;flex-shrink:0;background:#e8eaee;border-left:1px solid #dde0e6;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px 16px;gap:12px}
+.nav-preview-img{max-height:170px;width:100%;object-fit:contain;filter:drop-shadow(0 10px 24px rgba(0,0,0,0.22));transition:opacity .2s ease}
+.nav-preview-label{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#dc2626}
+.nav-preview-name{font-size:13px;font-weight:700;color:#111827;text-align:center;line-height:1.3}
+.nav-preview-arrow{font-size:11px;color:#6b7280;margin-top:4px}
+
+.nav-dropdown-item{display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:8px;color:#374151;font-size:15px;font-weight:500;transition:background .15s,color .15s;text-decoration:none}
+.nav-dropdown-item:hover,.nav-dropdown-item.preview-active{background:rgba(0,0,0,0.06);color:#111827}
+.nav-dropdown-icon{width:42px;height:42px;border-radius:8px;background:rgba(220,38,38,0.12);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.nav-dropdown-icon svg{width:20px;height:20px;color:#dc2626}
+.nav-dropdown-icon img{width:32px;height:32px;object-fit:contain}
+.nav-dropdown-title{font-weight:600;color:inherit;display:block;line-height:1.2;font-size:15px}
+.nav-dropdown-desc{font-size:12px;color:#6b7280;margin-top:2px;display:block}
+.nav-dropdown-item:hover .nav-dropdown-desc,.nav-dropdown-item.preview-active .nav-dropdown-desc{color:#4b5563}
+.nav-dropdown-section{font-size:10px;font-weight:700;letter-spacing:.1em;color:#9ca3af;text-transform:uppercase;padding:10px 12px 4px}
+.nav-dropdown-divider{height:1px;background:rgba(0,0,0,0.08);margin:6px 0}
+
+.mobile-menu{position:fixed;top:72px;left:0;right:0;bottom:0;background:#111827;z-index:49;overflow-y:auto;display:none;flex-direction:column;padding:16px}
+.mobile-menu.open{display:flex}
+.mob-section{font-size:11px;font-weight:700;letter-spacing:.1em;color:#4b5563;text-transform:uppercase;padding:16px 4px 8px}
+.mob-link{display:flex;align-items:center;gap:10px;padding:11px 8px;border-radius:8px;color:#d1d5db;font-size:14px;font-weight:500;transition:background .15s,color .15s;text-decoration:none}
+.mob-link:hover{background:rgba(255,255,255,0.06);color:#fff}
+.mob-link-icon{width:30px;height:30px;border-radius:6px;background:rgba(220,38,38,0.15);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.mob-link-icon svg{width:14px;height:14px;color:#dc2626}
+
+#mainHeader{background:transparent;transition:background .3s ease,border-color .3s ease,box-shadow .3s ease;border-bottom:1px solid transparent}
+#mainHeader.scrolled{background:#f0f2f5;border-bottom:1px solid #dde0e6;box-shadow:0 2px 16px rgba(0,0,0,0.07)}
+
+/* ── BUTTONS ─────────────────────────────────────── */
+.btn-red{background:#dc2626;color:#fff;padding:12px 28px;border-radius:6px;font-weight:700;font-size:15px;cursor:pointer;border:none;display:inline-block;transition:background .15s}
+.btn-red:hover{background:#b91c1c}
+.btn-outline{background:transparent;color:#111827;padding:12px 28px;border-radius:6px;font-weight:600;font-size:15px;cursor:pointer;border:2px solid #d1d5db;display:inline-block;transition:border-color .15s,color .15s}
+.btn-outline:hover{border-color:#111827;color:#111827}
+
+/* ── CARD SYSTEM ─────────────────────────────────── */
+.card{background:#fff;border-radius:16px;border:1px solid #e5e7eb;box-shadow:0 2px 16px rgba(0,0,0,0.06)}
+.card-accent{background:rgb(254,242,242);border-radius:16px;border:1.5px solid rgba(220,38,38,0.3);box-shadow:0 4px 20px rgba(220,38,38,0.08)}
+.card-dark{background:#2e3138;border-radius:16px;border:1px solid #454952}
+
+/* ── FEATURES DARK SECTION ───────────────────────── */
+.features-bg{background:#1e2124;position:relative}
+.features-bg::before{content:'';position:absolute;inset:0;background:url('https://mansard.pl/wp-content/uploads/2023/12/s2-1.jpg') center bottom/cover no-repeat;opacity:1;mix-blend-mode:color;pointer-events:none;z-index:0}
+.features-bg > *{position:relative;z-index:1}
+.feature-card{background:#2e3138;border:1px solid #454952;border-radius:16px;padding:28px;position:relative;overflow:hidden;transition:transform .25s cubic-bezier(.34,1.56,.64,1),box-shadow .25s ease,border-color .25s ease}
+.feature-card:hover{transform:translateY(-6px);border-color:rgba(220,38,38,0.45);box-shadow:0 12px 32px rgba(0,0,0,0.35),0 0 0 1px rgba(220,38,38,0.15)}
+.feature-num{position:absolute;top:-8px;right:12px;font-size:88px;font-weight:900;color:rgba(255,255,255,0.04);line-height:1;pointer-events:none;user-select:none}
+.feature-icon{width:40px;height:40px;background:rgba(220,38,38,0.45);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;border:1px solid rgba(220,38,38,0.3)}
+
+/* ── COMPARISON ──────────────────────────────────── */
+.compare-bg{background:#f0f2f5}
+.compare-card-left{background:#fff;border:1px solid #e5e7eb;border-radius:16px;padding:40px;box-shadow:0 2px 16px rgba(0,0,0,0.06)}
+.compare-card-right{background:#fff;border:2px solid #dc2626;border-radius:16px;padding:40px;position:relative;box-shadow:0 4px 20px rgba(220,38,38,0.12);transition:transform .25s cubic-bezier(.34,1.56,.64,1),box-shadow .25s ease}
+.compare-card-right:hover{transform:translateY(-6px);box-shadow:0 12px 32px rgba(220,38,38,0.22)}
+.badge-rec{background:#dc2626;color:#fff;font-size:11px;font-weight:700;letter-spacing:.08em;padding:5px 16px;border-radius:999px;position:absolute;top:-14px;left:50%;transform:translateX(-50%);white-space:nowrap}
+.x-icon{width:22px;height:22px;border-radius:50%;border:1.5px solid #9ca3af;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;color:#9ca3af;font-size:13px}
+.check-icon{color:#dc2626;font-size:16px;font-weight:700;flex-shrink:0}
+
+/* ── REVIEWS ─────────────────────────────────────── */
+.review-card{background:#fff;border:1px solid #e5e7eb;border-radius:16px;padding:24px;box-shadow:0 2px 16px rgba(0,0,0,0.06);transition:transform .25s cubic-bezier(.34,1.56,.64,1),box-shadow .25s ease,border-color .25s ease}
+.review-card:hover{transform:translateY(-6px);border-color:#d1d5db;box-shadow:0 12px 32px rgba(0,0,0,0.12)}
+.star-gold{color:#f59e0b}
+.star-empty{color:#d1d5db}
+
+/* ── WYCENA DARK SECTION ─────────────────────────── */
+.wycena-bg{background:#1e2124;position:relative}
+.wycena-bg::before{content:'';position:absolute;inset:0;background:url('https://mansard.pl/wp-content/uploads/2023/12/s2-1.jpg') center bottom/cover no-repeat;opacity:1;mix-blend-mode:color;pointer-events:none;z-index:0}
+.wycena-bg > *{position:relative;z-index:1}
+.wycena-card{background:#fff;border-radius:20px;border:1.5px solid rgba(220,38,38,0.3);position:relative}
+.wycena-label{font-size:11px;font-weight:700;letter-spacing:.15em;color:#dc2626;text-align:center;padding:22px 32px 0;display:flex;align-items:center;gap:12px}
+.wycena-label::before,.wycena-label::after{content:'';flex:1;height:1px;background:rgba(220,38,38,0.3)}
+.roof-option{display:flex;flex-direction:column;align-items:center;gap:6px;cursor:pointer;padding:10px 12px;border-radius:8px;border:2px solid transparent;transition:border-color .15s}
+.roof-option.selected,.roof-option:hover{border-color:#dc2626}
+.roof-option span{font-size:10px;font-weight:700;letter-spacing:.08em;color:#555}
+
+/* ── BRAND BACKGROUND ────────────────────────────── */
+.brand-bg-light,.brand-bg-dark{position:relative}
+.brand-bg-light::before,.brand-bg-dark::before{content:'';position:absolute;inset:0;pointer-events:none;background-image:url('/brand_assets/brand-bg.jpg');background-repeat:no-repeat;background-position:center bottom;background-size:100% auto;z-index:0}
+.brand-bg-light::before{opacity:.09}
+.brand-bg-dark::before{opacity:.15;filter:brightness(0) invert(1)}
+.brand-bg-light > *,.brand-bg-dark > *{position:relative;z-index:1}
+@media(max-width:767px){.brand-bg-light::before,.brand-bg-dark::before{display:none}}
+.s2-overlay{position:relative}
+.s2-overlay::before{content:'';position:absolute;inset:0;pointer-events:none;background:url('https://mansard.pl/wp-content/uploads/2023/12/s2-1.jpg') center bottom/cover no-repeat;opacity:.5;mix-blend-mode:multiply;z-index:0}
+.s2-overlay > *{position:relative;z-index:1}
+
+/* ── FAQ ─────────────────────────────────────────── */
+.faq-bg{background:#f3f4f6}
+.faq-card{background:#fff;border-radius:16px;border:1px solid #e5e7eb;box-shadow:0 2px 16px rgba(0,0,0,0.06);overflow:hidden;margin-bottom:16px}
+.faq-question{display:flex;justify-content:space-between;align-items:center;padding:20px 24px;cursor:pointer;font-weight:600;font-size:15px}
+.faq-answer{max-height:0;overflow:hidden;transition:max-height .35s ease}
+.faq-card.open .faq-answer{max-height:600px}
+.faq-chevron{color:#dc2626;transition:transform .3s;flex-shrink:0}
+.faq-card.open .faq-chevron{transform:rotate(180deg)}
+
+.faq-ed-item{border-top:1px solid #e5e7eb;padding:22px 0;cursor:pointer;display:grid;grid-template-columns:40px 1fr;gap:16px;align-items:start}
+.faq-ed-item:last-child{border-bottom:1px solid #e5e7eb}
+.faq-ed-num{font-size:11px;font-weight:700;letter-spacing:.1em;color:#9ca3af;padding-top:3px;font-family:monospace;transition:color .2s}
+.faq-ed-item.open .faq-ed-num{color:#dc2626}
+.faq-ed-q{font-size:16px;font-weight:600;color:#111827;line-height:1.4;display:flex;justify-content:space-between;align-items:center;gap:16px}
+.faq-ed-item:hover .faq-ed-q{color:#dc2626}
+.faq-ed-chevron{flex-shrink:0;color:#9ca3af;transition:transform .3s,color .2s}
+.faq-ed-item.open .faq-ed-chevron{transform:rotate(180deg);color:#dc2626}
+.faq-ed-a{max-height:0;overflow:hidden;transition:max-height .35s ease}
+.faq-ed-item.open .faq-ed-a{max-height:400px}
+
+/* ── TECH SPECS ──────────────────────────────────── */
+.specs-bg{background:#f9f8f5}
+
+/* ── COLOR SELECTOR (immersive) ──────────────────── */
+#colorSection{transition:background-color .55s ease}
+.color-swatch{position:relative;width:52px;height:52px;border-radius:10px;cursor:pointer;border:3px solid transparent;transition:border-color .15s,transform .15s,box-shadow .15s;box-shadow:0 2px 8px rgba(0,0,0,.35)}
+.color-swatch.active{border-color:#fff;box-shadow:0 0 0 2px rgba(255,255,255,0.6),0 4px 14px rgba(0,0,0,.5)}
+.color-swatch[data-bestseller]::before{content:'★';position:absolute;top:-7px;right:-7px;width:18px;height:18px;background:#fff;border-radius:50%;font-size:10px;line-height:18px;text-align:center;color:#dc2626;z-index:3;box-shadow:0 1px 6px rgba(0,0,0,0.4)}
+.color-swatch.active::after{content:'✓';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:22px;height:22px;background:rgba(255,255,255,0.9);border-radius:50%;font-size:12px;font-weight:800;color:#111;line-height:22px;text-align:center;pointer-events:none}
+.color-swatch:hover{transform:scale(1.1)}
+.color-swatch-custom{position:relative;width:52px;height:52px;border-radius:10px;cursor:pointer;border:3px solid transparent;transition:border-color .15s,transform .15s;box-shadow:0 2px 8px rgba(0,0,0,.35);background:conic-gradient(#dc2626,#f59e0b,#22c55e,#3b82f6,#a855f7,#dc2626);display:flex;align-items:center;justify-content:center}
+.color-swatch-custom:hover{transform:scale(1.1)}
+.color-swatch-custom span{font-size:18px;font-weight:900;color:#fff;text-shadow:0 1px 4px rgba(0,0,0,.7);line-height:1}
+
+@keyframes badgePop{from{opacity:0;transform:scale(.7)}to{opacity:1;transform:scale(1)}}
+
+/* ── COATING TABS ────────────────────────────────── */
+.tab-pill{display:inline-flex;background:#f3f4f6;border-radius:999px;padding:4px}
+.pill-btn{padding:10px 28px;border-radius:999px;font-size:14px;font-weight:600;cursor:pointer;border:none;background:transparent;color:#6b7280;transition:background .2s,color .2s,box-shadow .2s;white-space:nowrap}
+.pill-btn.active{background:#fff;color:#111827;box-shadow:0 1px 6px rgba(0,0,0,0.13)}
+.tab-panel{display:none}
+.tab-panel.active{display:grid}
+
+/* ── GALLERY ─────────────────────────────────────── */
+.gallery-filter{padding:8px 20px;border-radius:999px;font-size:14px;font-weight:600;cursor:pointer;border:1.5px solid #e5e7eb;background:#fff;color:#6b7280;transition:background .15s,color .15s,border-color .15s}
+.gallery-filter:hover{border-color:#dc2626;color:#dc2626}
+.gallery-filter.active{background:#dc2626;color:#fff;border-color:#dc2626}
+.gallery-item{border-radius:16px;overflow:hidden;position:relative;box-shadow:0 2px 16px rgba(0,0,0,0.08);transition:transform .25s cubic-bezier(.34,1.56,.64,1),box-shadow .25s ease}
+.gallery-item:hover{transform:translateY(-6px);box-shadow:0 14px 36px rgba(0,0,0,0.16)}
+.gallery-overlay{position:absolute;bottom:0;left:0;right:0;padding:14px 16px;background:linear-gradient(to top,rgba(0,0,0,0.72) 0%,transparent 100%);color:#fff;transform:translateY(4px);opacity:.9;transition:transform .25s ease,opacity .25s ease}
+.gallery-item:hover .gallery-overlay{transform:translateY(0);opacity:1}
+
+/* ── BUILDING TABS ───────────────────────────────── */
+.building-tab{display:inline-flex;align-items:center;gap:6px;padding:10px 20px;border-radius:999px;font-size:14px;font-weight:600;cursor:pointer;border:1.5px solid #e5e7eb;background:#fff;color:#6b7280;transition:background .15s,color .15s,border-color .15s}
+.building-tab:hover{border-color:#dc2626;color:#dc2626}
+.building-tab.active{background:#dc2626;color:#fff;border-color:#dc2626}
+
+/* ── MYTHS ───────────────────────────────────────── */
+.myth-card{background:#fff;border-radius:16px;border:1px solid #e5e7eb;box-shadow:0 2px 16px rgba(0,0,0,0.06);padding:28px}
+.myth-badge{display:inline-flex;align-items:center;gap:6px;background:#fee2e2;color:#dc2626;font-size:11px;font-weight:700;letter-spacing:.1em;padding:4px 12px;border-radius:999px;margin-bottom:14px}
+.myth-fact{display:flex;align-items:flex-start;gap:10px;margin-top:14px;padding-top:14px;border-top:1px solid #f3f4f6}
+.myth-check{width:22px;height:22px;background:#dcfce7;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+
+/* ── APPLICATION CARDS ───────────────────────────── */
+.app-card{border-radius:16px;overflow:hidden;border:1px solid #e5e7eb;box-shadow:0 2px 16px rgba(0,0,0,0.06);transition:transform .25s cubic-bezier(.34,1.56,.64,1),box-shadow .25s ease,border-color .25s ease}
+.app-card:hover{transform:translateY(-6px);border-color:#d1d5db;box-shadow:0 12px 32px rgba(0,0,0,0.12)}
+
+/* ── STEPS / PROCESS ─────────────────────────────── */
+.step-card{background:#fff;border:1px solid #e5e7eb;border-radius:16px;padding:24px 20px;text-align:center;box-shadow:0 2px 16px rgba(0,0,0,0.06);transition:transform .25s cubic-bezier(.34,1.56,.64,1),box-shadow .25s ease,border-color .25s ease}
+.step-card:hover{transform:translateY(-6px);border-color:#d1d5db;box-shadow:0 12px 32px rgba(0,0,0,0.12)}
+.step-num{width:52px;height:52px;border-radius:50%;background:#dc2626;color:#fff;font-size:18px;font-weight:800;display:flex;align-items:center;justify-content:center;margin:0 auto 16px}
+.step-icon-box{width:44px;height:44px;background:#fee2e2;border-radius:8px;display:flex;align-items:center;justify-content:center;margin:0 auto 14px}
+
+/* ── UTILITIES ───────────────────────────────────── */
+.section-label{font-size:11px;font-weight:700;letter-spacing:.15em;color:#dc2626;text-transform:uppercase}
+.red-ul li::before{content:'✓';color:#dc2626;font-weight:700;margin-right:10px}
+.green-check{color:#16a34a;font-size:16px;margin-right:8px}
