@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blacha trapezowa na stodole — Rakowa | Mansard</title>
+  <meta name="description" content="Ekspresowa wymiana dachu stodoły i obory w Rakowej. Blacha trapezowa T-18, kolor RAL 8004, 400 m², realizacja w 5 dni. Opinia Pana Mirosława." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="/assets/site.css" />
+  <style>
+    body { font-family: 'DM Sans', ui-sans-serif, system-ui, sans-serif; color: #374151; }
+    h1,h2,h3,h4,h5,h6 { font-family: 'Inter', ui-sans-serif, system-ui, sans-serif; }
+
+    /* ── Hero ─────────────────────────────── */
+    .case-hero {
+      position: relative;
+      height: 540px;
+      overflow: hidden;
+      background: #1e2124;
+    }
+    .case-hero-img {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center 60%;
+      filter: brightness(0.55);
+      transition: transform 8s ease;
+    }
+    .case-hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.2) 60%, transparent 100%);
+    }
+    .case-hero-content {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      padding: 0 0 48px;
+    }
+
+    /* ── Breadcrumb ───────────────────────── */
+    .breadcrumb {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 13px; color: rgba(255,255,255,0.55);
+      margin-bottom: 20px;
+      font-family: 'DM Sans', sans-serif;
+    }
+    .breadcrumb a { color: rgba(255,255,255,0.55); text-decoration: none; transition: color .15s; }
+    .breadcrumb a:hover { color: #fff; }
+    .breadcrumb-sep { font-size: 10px; }
+
+    /* ── Layout ───────────────────────────── */
+    .case-layout {
+      display: grid;
+      grid-template-columns: 1fr 320px;
+      gap: 48px;
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 64px 24px 80px;
+    }
+    @media (max-width: 900px) {
+      .case-layout { grid-template-columns: 1fr; gap: 40px; padding: 40px 20px 60px; }
+      .case-sidebar { order: -1; }
+    }
+
+    /* ── Prose ────────────────────────────── */
+    .case-prose h2 {
+      font-size: 22px; font-weight: 700; color: #111827;
+      margin: 40px 0 12px; letter-spacing: -0.01em;
+    }
+    .case-prose h2:first-child { margin-top: 0; }
+    .case-prose p {
+      font-size: 16px; color: #374151; line-height: 1.75;
+      margin-bottom: 16px;
+    }
+    .case-prose ul {
+      list-style: none; padding: 0; margin: 0 0 16px;
+    }
+    .case-prose ul li {
+      display: flex; align-items: flex-start; gap: 10px;
+      font-size: 15px; color: #374151; line-height: 1.6;
+      padding: 8px 0; border-bottom: 1px solid #f3f4f6;
+    }
+    .case-prose ul li:last-child { border-bottom: none; }
+    .case-prose ul li::before {
+      content: '';
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: #dc2626;
+      flex-shrink: 0;
+      margin-top: 8px;
+    }
+
+    /* ── Quote ────────────────────────────── */
+    .case-quote {
+      background: #f9f8f5;
+      border-left: 3px solid #dc2626;
+      border-radius: 0 12px 12px 0;
+      padding: 24px 28px;
+      margin: 40px 0;
+    }
+    .case-quote p {
+      font-size: 17px !important;
+      font-style: italic;
+      color: #1f2937 !important;
+      line-height: 1.7 !important;
+      margin: 0 0 12px !important;
+    }
+    .case-quote cite {
+      font-size: 13px;
+      font-weight: 700;
+      color: #dc2626;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      font-style: normal;
+    }
+
+    /* ── Sidebar ──────────────────────────── */
+    .case-sidebar {
+      position: sticky;
+      top: 100px;
+      align-self: start;
+    }
+    .sidebar-card {
+      background: #fff;
+      border: 1px solid #e5e7eb;
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+    }
+    .sidebar-card + .sidebar-card { margin-top: 20px; }
+
+    .sidebar-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .15em;
+      color: #dc2626;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+      font-family: 'DM Sans', sans-serif;
+    }
+    .sidebar-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 10px 0;
+      border-bottom: 1px solid #f3f4f6;
+      font-size: 14px;
+    }
+    .sidebar-row:last-child { border-bottom: none; padding-bottom: 0; }
+    .sidebar-key { color: #9ca3af; font-weight: 500; flex-shrink: 0; }
+    .sidebar-val { color: #111827; font-weight: 700; font-family: 'Inter', sans-serif; text-align: right; }
+
+    /* ── Video ────────────────────────────── */
+    .video-wrap {
+      position: relative;
+      padding-bottom: 56.25%;
+      height: 0;
+      border-radius: 12px;
+      overflow: hidden;
+      background: #1e2124;
+      margin: 40px 0;
+    }
+    .video-wrap iframe {
+      position: absolute; top: 0; left: 0;
+      width: 100%; height: 100%;
+      border: none;
+    }
+
+    /* ── Gallery ──────────────────────────── */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 40px;
+    }
+    .gallery-grid .gallery-main {
+      grid-column: span 3;
+    }
+    @media (max-width: 639px) {
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+      .gallery-grid .gallery-main { grid-column: span 2; }
+    }
+    .gallery-img {
+      width: 100%;
+      aspect-ratio: 4/3;
+      object-fit: cover;
+      border-radius: 10px;
+      display: block;
+      transition: transform .3s ease;
+    }
+    .gallery-main .gallery-img {
+      aspect-ratio: 16/7;
+    }
+    .gallery-item {
+      overflow: hidden;
+      border-radius: 10px;
+      cursor: zoom-in;
+    }
+    .gallery-item:hover .gallery-img { transform: scale(1.04); }
+
+    /* ── Back link ────────────────────────── */
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 14px;
+      font-weight: 600;
+      color: #6b7280;
+      text-decoration: none;
+      transition: color .15s;
+    }
+    .back-link:hover { color: #dc2626; }
+
+    /* ── Section label ────────────────────── */
+    .section-label { justify-content: flex-start; gap: 0; }
+  </style>
+</head>
+<body class="bg-white">
+
+  <div id="site-nav"></div>
+
+  <!-- ══ HERO ══════════════════════════════════════════════ -->
+  <div class="case-hero">
+    <img class="case-hero-img"
+         src="https://mansard.pl/wp-content/uploads/2024/07/MANSARD_RAKOWA-9-of-15-scaled.jpg"
+         alt="Blacha trapezowa T18 na stodole — Rakowa" />
+    <div class="case-hero-overlay"></div>
+    <div class="case-hero-content">
+      <div class="max-w-5xl mx-auto px-6">
+        <div class="breadcrumb">
+          <a href="/">Mansard</a>
+          <span class="breadcrumb-sep">›</span>
+          <a href="/realizacje/">Realizacje</a>
+          <span class="breadcrumb-sep">›</span>
+          <span>Rakowa</span>
+        </div>
+        <div style="display:inline-flex;align-items:center;gap:8px;background:rgba(220,38,38,0.85);color:#fff;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:4px 14px;border-radius:999px;margin-bottom:14px;backdrop-filter:blur(4px)">
+          Blacha trapezowa T-18
+        </div>
+        <h1 style="font-size:clamp(1.8rem,1.4rem+2vw,3rem);font-weight:800;color:#fff;letter-spacing:-0.02em;line-height:1.15;max-width:640px;margin-bottom:12px">
+          Jak wygląda blacha trapezowa na stodole?
+        </h1>
+        <div style="display:flex;align-items:center;gap:12px;color:rgba(255,255,255,0.65);font-size:14px">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><circle cx="12" cy="11" r="3"/></svg>
+          Rakowa, Podkarpacie
+          <span style="width:3px;height:3px;border-radius:50%;background:rgba(255,255,255,0.35)"></span>
+          400 m²
+          <span style="width:3px;height:3px;border-radius:50%;background:rgba(255,255,255,0.35)"></span>
+          RAL 8004
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ CONTENT ═══════════════════════════════════════════ -->
+  <div class="case-layout">
+
+    <!-- MAIN -->
+    <div>
+      <a href="/realizacje/" class="back-link" style="margin-bottom:32px;display:inline-flex">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 12H5m7-7l-7 7 7 7"/></svg>
+        Wszystkie realizacje
+      </a>
+
+      <div class="case-prose">
+        <h2>Ekspresowa wymiana dachu stodoły i obory</h2>
+        <p>Pan Mirosław, właściciel gospodarstwa rolnego w Rakowej, stanął przed wyzwaniem kompleksowej wymiany pokrycia dachowego na swoich budynkach gospodarczych. Duży, wielospadowy dach stodoły i obory oraz dodatkowa szopka na drewno wymagały szybkiej i efektywnej realizacji.</p>
+
+        <h2>Wyzwanie</h2>
+        <p>Głównym priorytetem Pana Mirosława był termin realizacji — chciał jak najszybciej zakończyć prace, aby móc swobodnie korzystać z budynków. Oprócz terminowości, istotna była również cena oraz trwałość.</p>
+        <p>Pan Mirosław obawiał się przede wszystkim trwałości pokrycia oraz tego, że blacha przyjedzie na plac budowy zarysowana lub w złych wymiarach.</p>
+
+        <h2>Rozwiązanie</h2>
+        <p>Zaproponowaliśmy kompleksowe rozwiązanie, które spełniało wszystkie jego oczekiwania. Pan Mirosław wybrał blachę trapezową T-18 w kolorze RAL 8004, która gwarantuje trwałość i odporność na silne deszcze, wichury i inne warunki atmosferyczne.</p>
+        <p>Dzięki bliskości oddziału w Sanoku, możliwe było szybkie zamówienie i dostawa wszystkich niezbędnych materiałów — blachy dociętej na wymiar oraz elementów obróbki blacharskiej — w ciągu 5 dni.</p>
+
+        <div class="video-wrap">
+          <iframe src="https://www.youtube.com/embed/P6A-0NSwxB0" title="Realizacja — blacha trapezowa T18, Rakowa" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+
+        <h2>Wymiana dachu i efekt</h2>
+        <p>Więźba dachowa okazała się być w dobrym stanie — nie trzeba jej wymieniać, co było dobrą informacją. Pan Mirosław miał ułatwione zadanie, ponieważ w rodzinie jest dekarz, który pomógł wymienić pokrycia dachowe — wymiana przebiegła sprawnie i bez żadnych problemów.</p>
+        <p>Właściciel jest bardzo zadowolony z nowego dachu. Docenia przede wszystkim:</p>
+        <ul>
+          <li><strong>Szybki termin realizacji</strong> — dzięki dobrej organizacji pracy i dostępności materiałów, dach wymienił szybciej niż się spodziewał.</li>
+          <li><strong>Atrakcyjna cena</strong> — Pan Mirosław zmieścił się w założonym budżecie, a jednocześnie otrzymał solidny nowy dach.</li>
+          <li><strong>Trwałość i estetyka</strong> — rok już minął i nie ma żadnych problemów z dachem, jest trwały i wygląda w porządku.</li>
+          <li><strong>Kompleksowa obsługa</strong> — Mansard dostarczył cały dach w dociętych elementach, wystarczyło je zamontować.</li>
+        </ul>
+
+        <div class="case-quote">
+          <p>„Jestem bardzo zadowolony ze współpracy z firmą Mansard. Dzięki nim udało mi się szybko i sprawnie wymienić dach na moich budynkach gospodarczych. Dach wygląda estetycznie i jest trwały. Polecam Mansard wszystkim, którzy szukają wszystkiego w jednym miejscu i szybkiej dostawy."</p>
+          <cite>Pan Mirosław, Rakowa</cite>
+        </div>
+
+        <!-- Gallery -->
+        <h2>Zdjęcia z realizacji</h2>
+        <div class="gallery-grid">
+          <div class="gallery-item gallery-main">
+            <img class="gallery-img" src="https://mansard.pl/wp-content/uploads/2024/07/MANSARD_RAKOWA-15-of-15-scaled.jpg" alt="Blacha trapezowa T18 stodoła Rakowa — widok ogólny" loading="lazy" />
+          </div>
+          <div class="gallery-item">
+            <img class="gallery-img" src="https://mansard.pl/wp-content/uploads/2024/07/MANSARD_RAKOWA-7-of-15-scaled.jpg" alt="Dach stodoły — RAL 8004" loading="lazy" />
+          </div>
+          <div class="gallery-item">
+            <img class="gallery-img" src="https://mansard.pl/wp-content/uploads/2024/07/MANSARD_RAKOWA-4-of-15-scaled.jpg" alt="Obróbki blacharskie — Rakowa" loading="lazy" />
+          </div>
+          <div class="gallery-item">
+            <img class="gallery-img" src="https://mansard.pl/wp-content/uploads/2024/07/MANSARD_RAKOWA-9-of-15-scaled.jpg" alt="Budynek po wymianie dachu — Rakowa" loading="lazy" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SIDEBAR -->
+    <aside class="case-sidebar">
+      <div class="sidebar-card">
+        <div class="sidebar-label">Szczegóły projektu</div>
+        <div class="sidebar-row">
+          <span class="sidebar-key">Lokalizacja</span>
+          <span class="sidebar-val">Rakowa, Podkarpacie</span>
+        </div>
+        <div class="sidebar-row">
+          <span class="sidebar-key">Materiał</span>
+          <span class="sidebar-val">Blacha trapezowa T-18</span>
+        </div>
+        <div class="sidebar-row">
+          <span class="sidebar-key">Kolor</span>
+          <span class="sidebar-val">RAL 8004</span>
+        </div>
+        <div class="sidebar-row">
+          <span class="sidebar-key">Powierzchnia</span>
+          <span class="sidebar-val">400 m²</span>
+        </div>
+        <div class="sidebar-row">
+          <span class="sidebar-key">Budżet</span>
+          <span class="sidebar-val">niecałe 20 000 zł</span>
+        </div>
+        <div class="sidebar-row">
+          <span class="sidebar-key">Realizacja</span>
+          <span class="sidebar-val">5 dni</span>
+        </div>
+      </div>
+
+      <div class="sidebar-card" style="margin-top:20px">
+        <div class="sidebar-label">Zakres dostawy</div>
+        <ul style="list-style:none;padding:0;margin:0">
+          <li style="display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid #f3f4f6;font-size:14px;color:#374151">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#dc2626" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+            Blacha docięta na wymiar
+          </li>
+          <li style="display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid #f3f4f6;font-size:14px;color:#374151">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#dc2626" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+            Obróbki blacharskie
+          </li>
+          <li style="display:flex;align-items:center;gap:10px;padding:8px 0;font-size:14px;color:#374151">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#dc2626" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+            Dostawa pod budowę
+          </li>
+        </ul>
+      </div>
+
+      <a href="/bezplatna-wycena/" class="btn-red" style="display:flex;align-items:center;justify-content:center;gap:8px;margin-top:20px;padding:14px 24px;font-size:15px;width:100%">
+        Wyceń podobny dach
+        <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+      </a>
+
+      <a href="/produkty/blacha-trapezowa/" style="display:flex;align-items:center;justify-content:center;gap:8px;margin-top:10px;padding:12px 24px;font-size:14px;font-weight:600;color:#374151;background:#f3f4f6;border-radius:6px;text-decoration:none;transition:background .15s" onmouseover="this.style.background='#e5e7eb'" onmouseout="this.style.background='#f3f4f6'">
+        Zobacz blachę T-18
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+      </a>
+    </aside>
+  </div>
+
+  <!-- ══ CTA ════════════════════════════════════════════════ -->
+  <section style="background:#111827">
+    <div class="max-w-5xl mx-auto px-6 py-14 text-center">
+      <p class="section-label mb-3">BEZPŁATNA WYCENA</p>
+      <h2 style="font-family:'Inter',sans-serif;font-size:clamp(1.6rem,1.3rem+1.5vw,2.2rem);font-weight:800;color:#fff;letter-spacing:-0.02em;line-height:1.2;margin-bottom:14px">
+        Masz podobny projekt?
+      </h2>
+      <p style="color:#9ca3af;font-size:1rem;line-height:1.7;max-width:380px;margin:0 auto 28px">
+        Podaj wymiary budynku — wycenę wysyłamy w ciągu jednego dnia roboczego.
+      </p>
+      <a href="/bezplatna-wycena/" class="btn-red" style="display:inline-flex;align-items:center;gap:8px;padding:14px 32px;font-size:1rem">
+        Wyceń dach bezpłatnie
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+      </a>
+    </div>
+  </section>
+
+  <div id="site-footer"></div>
+
+  <script src="/assets/nav.js"></script>
+  <script src="/assets/footer.js"></script>
+</body>
+</html>

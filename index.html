@@ -1,0 +1,1144 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mansard — Producent blachy dachowej | Sanok, Podkarpacie</title>
+  <meta name="description" content="Producent blachy trapezowej, blachodachówki i systemów rynnowych. Własna produkcja w Sanoku, realizacja do 5 dni roboczych. Obsługujemy Podkarpacie i okolice." />
+  <link rel="canonical" href="https://mansard.pl/" />
+
+  <!-- GA4 placeholder: podmień G-XXXXXXXXXX -->
+  <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script> -->
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="/assets/site.css" />
+
+  <style>
+    /* ── HERO ──────────────────────────────────────── */
+    .hero-bg {
+      background: #111827;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-video-wrap {
+      position: absolute; inset: 0; z-index: 0; pointer-events: none;
+      opacity: 0;
+      transition: opacity 1.4s ease;
+    }
+    .hero-video-wrap iframe,
+    .hero-video-wrap > div {
+      position: absolute;
+      top: 50%; left: 50%;
+      width: 177.78vh;
+      height: 56.25vw;
+      min-width: 100%; min-height: 100%;
+      transform: translate(-50%, -50%);
+      border: 0;
+    }
+    .hero-video-overlay {
+      position: absolute; inset: 0; z-index: 1;
+      background: linear-gradient(
+        to right,
+        rgba(8,10,14,0.92) 0%,
+        rgba(8,10,14,0.82) 40%,
+        rgba(8,10,14,0.55) 70%,
+        rgba(8,10,14,0.35) 100%
+      );
+    }
+    /* fallback photo - zawsze widoczne pod iframe */
+    .hero-bg::before {
+      content: '';
+      position: absolute; inset: 0; z-index: 0;
+      background: url('https://mansard.pl/wp-content/uploads/2024/01/Zdjecie-w-tle-scaled.jpg') center/cover no-repeat;
+    }
+    .hero-bg > *:not(.hero-video-wrap):not(.hero-video-overlay) { position: relative; z-index: 2; }
+
+    /* ── PRODUCT CARDS ─────────────────────────────── */
+    .prod-card {
+      position: relative; border-radius: 16px; overflow: hidden;
+      display: block; text-decoration: none; aspect-ratio: 4/3;
+    }
+    .prod-card img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+      transition: transform .65s cubic-bezier(.25,.46,.45,.94);
+    }
+    .prod-card:hover img { transform: scale(1.07); }
+    .prod-card-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.18) 55%, transparent 100%);
+      transition: opacity .3s ease;
+    }
+    .prod-card:hover .prod-card-overlay { opacity: 0.92; }
+    .prod-card-body {
+      position: absolute; bottom: 0; left: 0; right: 0; padding: 22px 22px 20px;
+    }
+    .prod-card-tag {
+      font-size: 10px; font-weight: 700; letter-spacing: .12em;
+      color: #dc2626; text-transform: uppercase; margin-bottom: 5px; display: block;
+    }
+    .prod-card-title {
+      font-family: 'Inter', sans-serif; font-size: 1.05rem;
+      font-weight: 700; color: #fff; line-height: 1.25; letter-spacing: -0.01em;
+    }
+    .prod-card-sub {
+      font-size: 12px; color: rgba(255,255,255,0.6); margin-top: 4px;
+    }
+    .prod-card-arrow {
+      position: absolute; top: 16px; right: 16px;
+      width: 34px; height: 34px; border-radius: 50%;
+      background: rgba(220,38,38,0.15); border: 1px solid rgba(220,38,38,0.3);
+      display: flex; align-items: center; justify-content: center;
+      transition: background .2s, transform .25s cubic-bezier(.34,1.56,.64,1);
+    }
+    .prod-card:hover .prod-card-arrow {
+      background: #dc2626; transform: translate(2px, -2px);
+    }
+
+    /* ── REALIZACJE ────────────────────────────────── */
+    .real-card {
+      position: relative; border-radius: 16px; overflow: hidden;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.12);
+    }
+    .real-card img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+      transition: transform .65s cubic-bezier(.25,.46,.45,.94);
+    }
+    .real-card:hover img { transform: scale(1.04); }
+    .real-label {
+      position: absolute; bottom: 14px; left: 14px; right: 14px;
+      background: rgba(0,0,0,0.74); backdrop-filter: blur(6px);
+      border-radius: 8px; padding: 10px 14px;
+    }
+    .real-label-region {
+      display: block; font-size: 10px; font-weight: 700;
+      letter-spacing: .12em; color: #dc2626; text-transform: uppercase; margin-bottom: 2px;
+    }
+    .real-label-desc { color: #fff; font-size: 13px; font-weight: 600; }
+
+    /* ── USŁUGI PASEK ──────────────────────────────── */
+    .service-strip {
+      position: relative; border-radius: 12px; overflow: hidden;
+      display: flex; align-items: center; gap: 20px;
+      padding: 22px 26px; text-decoration: none;
+      border: 1px solid #e5e7eb; background: #fff;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.05);
+      transition: border-color .15s, box-shadow .25s, transform .25s cubic-bezier(.34,1.56,.64,1);
+    }
+    .service-strip:hover {
+      border-color: #dc2626; box-shadow: 0 8px 28px rgba(220,38,38,0.1);
+      transform: translateY(-3px);
+    }
+    .service-strip-icon {
+      width: 48px; height: 48px; border-radius: 10px; flex-shrink: 0;
+      background: rgba(220,38,38,0.08); border: 1px solid rgba(220,38,38,0.15);
+      display: flex; align-items: center; justify-content: center;
+    }
+  </style>
+</head>
+<body style="overflow-x:hidden">
+
+<div id="site-nav"></div>
+
+<!-- ══════════════════════════════════════
+     1. HERO
+══════════════════════════════════════ -->
+<section class="hero-bg" style="min-height:600px;background:#111827;margin-top:-72px;padding-top:72px">
+  <!-- YouTube video bg -->
+  <div class="hero-video-wrap">
+    <div id="heroVideo"></div>
+  </div>
+  <div class="hero-video-overlay"></div>
+
+  <!-- red left bar -->
+  <div style="position:absolute;top:0;left:0;width:4px;height:100%;background:#dc2626;z-index:3"></div>
+
+  <div class="max-w-7xl mx-auto px-6 md:px-10 flex flex-col justify-center" style="min-height:600px;padding-top:80px;padding-bottom:80px">
+
+    <div class="section-label mb-5" style="color:rgba(220,38,38,0.9)">Producent · Sanok · Podkarpacie</div>
+
+    <h1 class="font-bold text-white mb-6" style="font-size:clamp(2.4rem,5vw,3.8rem);max-width:660px;line-height:1.05;letter-spacing:-0.03em;text-shadow:0 2px 20px rgba(0,0,0,0.5)">
+      Blacha dachowa<br>prosto z produkcji.<br><span style="color:#dc2626">Gotowa w 5 dni.</span>
+    </h1>
+
+    <p class="leading-relaxed mb-8" style="max-width:460px;font-size:1.05rem;color:rgba(255,255,255,0.92);text-shadow:0 1px 12px rgba(0,0,0,0.4)">
+      Własna produkcja w Sanoku. Blacha cięta pod Twój dach - bez odpadów, bez modułów, bez ukrytych opłat. Obróbki i rynny w jednym zamówieniu.
+    </p>
+
+    <div class="flex flex-wrap gap-4 mb-14">
+      <a href="/bezplatna-wycena/" class="btn-red inline-flex items-center gap-2" style="font-size:1rem;padding:14px 32px">
+        Bezpłatna wycena
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+      </a>
+      <a href="/produkty/blacha-trapezowa/" style="font-size:1rem;padding:14px 32px;border-radius:6px;font-weight:600;border:2px solid rgba(255,255,255,0.2);color:#d1d5db;display:inline-block;transition:border-color .15s,color .15s" onmouseover="this.style.borderColor='rgba(255,255,255,0.5)';this.style.color='#fff'" onmouseout="this.style.borderColor='rgba(255,255,255,0.2)';this.style.color='#d1d5db'">
+        Blacha trapezowa T18
+      </a>
+    </div>
+
+    <!-- Stats -->
+    <div class="flex flex-wrap gap-10 pt-8" style="border-top:1px solid rgba(255,255,255,0.1)">
+      <div>
+        <div class="font-bold text-white" style="font-size:2.2rem;letter-spacing:-0.03em;line-height:1">82%</div>
+        <div class="text-sm mt-1" style="color:rgba(255,255,255,0.55)">zamówień poniżej 5 dni</div>
+      </div>
+      <div>
+        <div class="font-bold text-white" style="font-size:2.2rem;letter-spacing:-0.03em;line-height:1">4,7★</div>
+        <div class="text-sm mt-1" style="color:rgba(255,255,255,0.55)">średnia z 70+ opinii</div>
+      </div>
+      <div>
+        <div class="font-bold text-white" style="font-size:2.2rem;letter-spacing:-0.03em;line-height:1">30 lat</div>
+        <div class="text-sm mt-1" style="color:rgba(255,255,255,0.55)">doświadczenia</div>
+      </div>
+      <div>
+        <div class="font-bold text-white" style="font-size:2.2rem;letter-spacing:-0.03em;line-height:1">1400+</div>
+        <div class="text-sm mt-1" style="color:rgba(255,255,255,0.55)">dachów w 2025 roku</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     2. CZYM SIĘ ZAJMUJEMY
+══════════════════════════════════════ -->
+<section class="py-20" style="background:#f8f9fa;border-bottom:1px solid #eaecef">
+  <div class="max-w-7xl mx-auto px-6">
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
+
+      <!-- Lewa: tekst -->
+      <div>
+        <p class="section-label mb-4">Kim jesteśmy</p>
+        <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 mb-5" style="letter-spacing:-0.025em;line-height:1.1">
+          Producent blachy dachowej z własną halą w Sanoku
+        </h2>
+        <p class="text-gray-600 leading-relaxed mb-6" style="font-size:1.05rem">
+          Mansard to producent, nie pośrednik. Posiadamy własną linię produkcyjną, prasownię do obróbek blacharskich i laser do cięcia metali. Dzięki temu kontrolujemy jakość i termin od arkusza blachy aż po gotowe zamówienie.
+        </p>
+        <p class="text-gray-500 leading-relaxed mb-8">
+          Używamy stali włoskiej Arvedi z certyfikowanymi powłokami. Każda blacha jest cięta pod Twój wymiar - nie pocinacie na budowie, nie ma odpadów, cena jest precyzyjna.
+        </p>
+        <a href="/kontakt/" class="btn-red inline-flex items-center gap-2">
+          Skontaktuj się z nami
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+        </a>
+      </div>
+
+      <!-- Prawa: 4 kafelki -->
+      <div class="grid grid-cols-2 gap-4">
+
+        <!-- Pokrycia — wyróżniony czerwonym akcentem -->
+        <div class="card-accent rounded-2xl p-6" style="border-top:3px solid #dc2626;position:relative;overflow:hidden">
+          <div style="position:absolute;top:0;right:0;width:80px;height:80px;background:radial-gradient(circle at top right,rgba(220,38,38,0.1),transparent 70%);pointer-events:none"></div>
+          <div class="w-10 h-10 rounded-xl flex items-center justify-center mb-4" style="background:#dc2626;box-shadow:0 4px 12px rgba(220,38,38,0.35)">
+            <svg class="w-5 h-5" style="color:#fff" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-2 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+          </div>
+          <div class="font-bold mb-1.5" style="color:#991b1b">Pokrycia dachowe</div>
+          <div class="text-sm leading-relaxed" style="color:#b91c1c;opacity:.8">Blacha trapezowa, blachodachówka i rąbek stojacy - cięte pod każdy kąt i wymiar dachu</div>
+        </div>
+
+        <!-- Obróbki -->
+        <div class="card rounded-2xl p-6" style="transition:box-shadow .2s,transform .2s" onmouseover="this.style.boxShadow='0 8px 28px rgba(0,0,0,0.1)';this.style.transform='translateY(-2px)'" onmouseout="this.style.boxShadow='';this.style.transform=''">
+          <div class="w-10 h-10 rounded-xl flex items-center justify-center mb-4" style="background:rgba(220,38,38,0.08);border:1px solid rgba(220,38,38,0.15)">
+            <svg class="w-5 h-5" style="color:#dc2626" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"/></svg>
+          </div>
+          <div class="font-bold text-gray-900 mb-1.5">Obróbki i system rynnowy</div>
+          <div class="text-gray-500 text-sm leading-relaxed">Obróbki blacharskie i rynny Frigg - wszystko dobrane do jednego zamówienia</div>
+        </div>
+
+        <!-- Laser -->
+        <div class="card rounded-2xl p-6" style="transition:box-shadow .2s,transform .2s" onmouseover="this.style.boxShadow='0 8px 28px rgba(0,0,0,0.1)';this.style.transform='translateY(-2px)'" onmouseout="this.style.boxShadow='';this.style.transform=''">
+          <div class="w-10 h-10 rounded-xl flex items-center justify-center mb-4" style="background:rgba(220,38,38,0.08);border:1px solid rgba(220,38,38,0.15)">
+            <svg class="w-5 h-5" style="color:#dc2626" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+          </div>
+          <div class="font-bold text-gray-900 mb-1.5">Cięcie laserowe</div>
+          <div class="text-gray-500 text-sm leading-relaxed">Laser światłowodowy Fiber - precyzyjne cięcie stali do 4000 mm, krótkie terminy</div>
+        </div>
+
+        <!-- Lakiernia -->
+        <div class="card rounded-2xl p-6" style="transition:box-shadow .2s,transform .2s" onmouseover="this.style.boxShadow='0 8px 28px rgba(0,0,0,0.1)';this.style.transform='translateY(-2px)'" onmouseout="this.style.boxShadow='';this.style.transform=''">
+          <div class="w-10 h-10 rounded-xl flex items-center justify-center mb-4" style="background:rgba(220,38,38,0.08);border:1px solid rgba(220,38,38,0.15)">
+            <svg class="w-5 h-5" style="color:#dc2626" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 0zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"/></svg>
+          </div>
+          <div class="font-bold text-gray-900 mb-1.5">Malowanie proszkowe</div>
+          <div class="text-gray-500 text-sm leading-relaxed">Lakiernia do 4000×2000 mm, pełna paleta RAL - usługa dla firm i klientów indywidualnych</div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     3a. POKRYCIA DACHOWE
+══════════════════════════════════════ -->
+<section class="compare-bg s2-overlay py-24">
+  <div class="max-w-7xl mx-auto px-6">
+
+    <div class="flex items-end justify-between mb-12">
+      <div>
+        <p class="section-label mb-3">Pokrycia dachowe</p>
+        <h2 class="text-3xl lg:text-4xl font-bold text-gray-900" style="letter-spacing:-0.02em">Blacha pod każdy dach</h2>
+      </div>
+      <p class="text-gray-500 text-sm max-w-xs text-right leading-relaxed hidden lg:block">Własna produkcja w Sanoku. Cięcie pod Twój wymiar, realizacja 3-5 dni, stal Arvedi.</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3" style="gap:20px">
+
+      <a href="/produkty/blacha-trapezowa/" style="text-decoration:none;border-radius:20px;overflow:hidden;background:#fff;border:1px solid #e2e5ea;display:flex;flex-direction:column;box-shadow:0 2px 16px rgba(0,0,0,0.06);transition:box-shadow .2s,transform .2s" onmouseover="this.style.cssText+='box-shadow:0 16px 48px rgba(220,38,38,0.12),0 4px 16px rgba(0,0,0,0.08);transform:translateY(-4px)'" onmouseout="this.style.boxShadow='0 2px 16px rgba(0,0,0,0.06)';this.style.transform=''">
+        <div style="background:linear-gradient(145deg,#f8f9fa 0%,#dde1e7 100%);display:flex;align-items:center;justify-content:center;padding:24px 16px;min-height:360px;position:relative;overflow:hidden;border-top:4px solid #dc2626">
+          <div style="position:absolute;top:0;right:0;width:0;height:0;border-style:solid;border-width:0 52px 52px 0;border-color:transparent #dc2626 transparent transparent;opacity:.15;pointer-events:none"></div>
+          <img src="https://mansard.pl/wp-content/uploads/2025/12/T-18_2-1.png" alt="Blacha trapezowa T18" style="width:100%;max-width:420px;object-fit:contain;filter:drop-shadow(0 32px 56px rgba(0,0,0,0.55)) drop-shadow(0 8px 20px rgba(0,0,0,0.35)) drop-shadow(0 0 80px rgba(0,0,0,0.18)) drop-shadow(0 0 3px rgba(255,255,255,0.12))">
+        </div>
+        <div style="padding:24px 28px 28px">
+          <div style="font-size:10px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:#dc2626;margin-bottom:6px">T18</div>
+          <div style="font-size:1.15rem;font-weight:800;color:#111827;letter-spacing:-0.02em;margin-bottom:10px">Blacha trapezowa</div>
+          <p style="font-size:.82rem;color:#6b7280;line-height:1.65;margin-bottom:18px">Klasyka pokryc dachowych - trwala, lekka i latwa w montazu. Swietna do domow, hal i stodol.</p>
+          <div style="font-size:.8rem;font-weight:700;color:#dc2626;display:flex;align-items:center;gap:5px">Zobacz produkt <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></div>
+        </div>
+      </a>
+
+      <a href="/produkty/blachodachowka/" style="text-decoration:none;border-radius:20px;overflow:hidden;background:#fff;border:1px solid #e2e5ea;display:flex;flex-direction:column;box-shadow:0 2px 16px rgba(0,0,0,0.06);transition:box-shadow .2s,transform .2s" onmouseover="this.style.cssText+='box-shadow:0 16px 48px rgba(220,38,38,0.12),0 4px 16px rgba(0,0,0,0.08);transform:translateY(-4px)'" onmouseout="this.style.boxShadow='0 2px 16px rgba(0,0,0,0.06)';this.style.transform=''">
+        <div style="background:linear-gradient(145deg,#f8f9fa 0%,#dde1e7 100%);display:flex;align-items:center;justify-content:center;padding:24px 16px;min-height:360px;position:relative;overflow:hidden;border-top:4px solid #dc2626">
+          <div style="position:absolute;top:0;right:0;width:0;height:0;border-style:solid;border-width:0 52px 52px 0;border-color:transparent #dc2626 transparent transparent;opacity:.15;pointer-events:none"></div>
+          <img src="https://mansard.pl/wp-content/uploads/2023/12/gymir.png" alt="Blachodachówka Gymir" style="width:100%;max-width:420px;object-fit:contain;filter:drop-shadow(0 32px 56px rgba(0,0,0,0.55)) drop-shadow(0 8px 20px rgba(0,0,0,0.35)) drop-shadow(0 0 80px rgba(0,0,0,0.18)) drop-shadow(0 0 3px rgba(255,255,255,0.12))">
+        </div>
+        <div style="padding:24px 28px 28px">
+          <div style="font-size:10px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:#dc2626;margin-bottom:6px">Gymir</div>
+          <div style="font-size:1.15rem;font-weight:800;color:#111827;letter-spacing:-0.02em;margin-bottom:10px">Blachodachówka</div>
+          <p style="font-size:.82rem;color:#6b7280;line-height:1.65;margin-bottom:18px">Wyglad dachowki ceramicznej w lekkiej blasze. Idealny wybor gdy zalezy Ci na estetyce i prostocie montazu.</p>
+          <div style="font-size:.8rem;font-weight:700;color:#dc2626;display:flex;align-items:center;gap:5px">Zobacz produkt <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></div>
+        </div>
+      </a>
+
+      <a href="/produkty/blacha-na-rabek-stojacy/" style="text-decoration:none;border-radius:20px;overflow:hidden;background:#fff;border:1px solid #e2e5ea;display:flex;flex-direction:column;box-shadow:0 2px 16px rgba(0,0,0,0.06);transition:box-shadow .2s,transform .2s" onmouseover="this.style.cssText+='box-shadow:0 16px 48px rgba(220,38,38,0.12),0 4px 16px rgba(0,0,0,0.08);transform:translateY(-4px)'" onmouseout="this.style.boxShadow='0 2px 16px rgba(0,0,0,0.06)';this.style.transform=''">
+        <div style="background:linear-gradient(145deg,#f8f9fa 0%,#dde1e7 100%);display:flex;align-items:center;justify-content:center;padding:24px 16px;min-height:360px;position:relative;overflow:hidden;border-top:4px solid #dc2626">
+          <div style="position:absolute;top:0;right:0;width:0;height:0;border-style:solid;border-width:0 52px 52px 0;border-color:transparent #dc2626 transparent transparent;opacity:.15;pointer-events:none"></div>
+          <img src="https://mansard.pl/wp-content/uploads/2024/01/Asgard.png" alt="Rąbek stojący Asgard" style="width:100%;max-width:420px;object-fit:contain;filter:drop-shadow(0 32px 56px rgba(0,0,0,0.55)) drop-shadow(0 8px 20px rgba(0,0,0,0.35)) drop-shadow(0 0 80px rgba(0,0,0,0.18)) drop-shadow(0 0 3px rgba(255,255,255,0.12))">
+        </div>
+        <div style="padding:24px 28px 28px">
+          <div style="font-size:10px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:#dc2626;margin-bottom:6px">Asgard</div>
+          <div style="font-size:1.15rem;font-weight:800;color:#111827;letter-spacing:-0.02em;margin-bottom:10px">Rąbek stojący</div>
+          <p style="font-size:.82rem;color:#6b7280;line-height:1.65;margin-bottom:18px">Nowoczesny, minimalistyczny styl dla wymagajacych. Pionowe linie nadaja dachowi architektoniczny charakter.</p>
+          <div style="font-size:.8rem;font-weight:700;color:#dc2626;display:flex;align-items:center;gap:5px">Zobacz produkt <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></div>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     3b. KOMPLETNY ZESTAW
+══════════════════════════════════════ -->
+<section class="features-bg py-24">
+  <div class="max-w-7xl mx-auto px-6">
+
+    <div class="mb-12">
+      <p class="section-label mb-3">Kompletny zestaw</p>
+      <h2 class="text-3xl lg:text-4xl font-bold text-white mb-3" style="letter-spacing:-0.02em">Blacha to dopiero początek</h2>
+      <p class="text-gray-400 text-base max-w-lg">Rynny, obróbki, parapety, laser i lakiernia - wszystko z jednej hali w Sanoku, w jednym zamówieniu.</p>
+    </div>
+
+    <!-- Diagram: zdjęcie dachu z hotspotami + lista po prawej -->
+    <div class="grid grid-cols-1 lg:grid-cols-[3fr_2fr] gap-8 items-start">
+
+      <!-- Lewa: zdjęcie z hotspotami -->
+      <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 48px rgba(0,0,0,0.4)">
+        <img src="https://mansard.pl/wp-content/uploads/2023/12/s2.jpg" alt="Kompletny system dachowy" style="width:100%;height:520px;object-fit:cover;object-position:center top;display:block">
+        <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,0.0) 0%,rgba(0,0,0,0.45) 100%)"></div>
+
+        <!-- Hotspot 1: Rynna -->
+        <div style="position:absolute;top:54%;left:48%;display:flex;align-items:center;gap:10px;cursor:pointer" onclick="toggleAcc(1)">
+          <div style="position:relative;width:42px;height:42px;flex-shrink:0">
+            <span style="position:absolute;inset:-4px;border-radius:50%;background:rgba(220,38,38,0.45);animation:sonarPing 2s ease-out infinite"></span>
+            <span style="position:absolute;inset:-4px;border-radius:50%;background:rgba(220,38,38,0.25);animation:sonarPing 2s ease-out infinite .6s"></span>
+            <div style="position:relative;width:42px;height:42px;background:#dc2626;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:900;color:#fff;box-shadow:0 4px 20px rgba(220,38,38,0.6),0 2px 8px rgba(0,0,0,0.5);border:2px solid rgba(255,255,255,0.3)">1</div>
+          </div>
+          <div style="background:rgba(0,0,0,0.82);backdrop-filter:blur(8px);border-radius:8px;padding:6px 12px;white-space:nowrap;border:1px solid rgba(255,255,255,0.1)">
+            <div style="font-size:9px;font-weight:700;color:#dc2626;letter-spacing:.12em;text-transform:uppercase">Frigg</div>
+            <div style="font-size:13px;font-weight:700;color:#fff">System rynnowy</div>
+          </div>
+        </div>
+
+        <!-- Hotspot 2: Obrobki -->
+        <div style="position:absolute;top:37%;left:18%;display:flex;align-items:center;gap:10px;cursor:pointer" onclick="toggleAcc(2)">
+          <div style="position:relative;width:42px;height:42px;flex-shrink:0">
+            <span style="position:absolute;inset:-4px;border-radius:50%;background:rgba(220,38,38,0.45);animation:sonarPing 2s ease-out infinite .8s"></span>
+            <span style="position:absolute;inset:-4px;border-radius:50%;background:rgba(220,38,38,0.25);animation:sonarPing 2s ease-out infinite 1.4s"></span>
+            <div style="position:relative;width:42px;height:42px;background:#dc2626;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:900;color:#fff;box-shadow:0 4px 20px rgba(220,38,38,0.6),0 2px 8px rgba(0,0,0,0.5);border:2px solid rgba(255,255,255,0.3)">2</div>
+          </div>
+          <div style="background:rgba(0,0,0,0.82);backdrop-filter:blur(8px);border-radius:8px;padding:6px 12px;white-space:nowrap;border:1px solid rgba(255,255,255,0.1)">
+            <div style="font-size:9px;font-weight:700;color:#dc2626;letter-spacing:.12em;text-transform:uppercase">Na wymiar</div>
+            <div style="font-size:13px;font-weight:700;color:#fff">Obróbki blacharskie</div>
+          </div>
+        </div>
+
+        <!-- Hotspot 3: Parapety -->
+        <div style="position:absolute;top:70%;left:30%;display:flex;align-items:center;gap:10px;cursor:pointer" onclick="toggleAcc(3)">
+          <div style="position:relative;width:42px;height:42px;flex-shrink:0">
+            <span style="position:absolute;inset:-4px;border-radius:50%;background:rgba(220,38,38,0.45);animation:sonarPing 2s ease-out infinite 1.6s"></span>
+            <span style="position:absolute;inset:-4px;border-radius:50%;background:rgba(220,38,38,0.25);animation:sonarPing 2s ease-out infinite 2.2s"></span>
+            <div style="position:relative;width:42px;height:42px;background:#dc2626;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:900;color:#fff;box-shadow:0 4px 20px rgba(220,38,38,0.6),0 2px 8px rgba(0,0,0,0.5);border:2px solid rgba(255,255,255,0.3)">3</div>
+          </div>
+          <div style="background:rgba(0,0,0,0.82);backdrop-filter:blur(8px);border-radius:8px;padding:6px 12px;white-space:nowrap;border:1px solid rgba(255,255,255,0.1)">
+            <div style="font-size:9px;font-weight:700;color:#dc2626;letter-spacing:.12em;text-transform:uppercase">Zewnętrzne</div>
+            <div style="font-size:13px;font-weight:700;color:#fff">Parapety</div>
+          </div>
+        </div>
+
+        <style>
+          @keyframes sonarPing {
+            0%   { transform: scale(1);   opacity: .7; }
+            100% { transform: scale(2.8); opacity: 0; }
+          }
+        </style>
+      </div>
+
+      <!-- Prawa: akordeon produktow + uslugi -->
+      <div style="display:flex;flex-direction:column;gap:8px">
+
+        <!-- Item 1: Rynna -->
+        <div id="acc-1" style="border-radius:14px;overflow:hidden;border:1px solid rgba(255,255,255,0.18);transition:border-color .2s">
+          <button onclick="toggleAcc(1)" style="width:100%;background:rgba(255,255,255,0.1);border:none;cursor:pointer;display:flex;align-items:center;gap:16px;padding:20px 22px;text-align:left">
+            <div style="width:36px;height:36px;background:#dc2626;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;color:#fff;flex-shrink:0">1</div>
+            <img src="https://mansard.pl/wp-content/uploads/2024/01/Rynna_2-removebg-preview.png" alt="" style="width:64px;height:64px;object-fit:contain;flex-shrink:0;filter:brightness(1.2)">
+            <div style="flex:1">
+              <div style="font-size:10px;font-weight:700;letter-spacing:.12em;color:#dc2626;text-transform:uppercase;margin-bottom:3px">Frigg</div>
+              <div style="font-size:1rem;font-weight:800;color:#fff">System rynnowy</div>
+              <div style="font-size:.78rem;color:#9ca3af;margin-top:2px">Stalowy, dopasowany kolorystycznie</div>
+            </div>
+            <svg id="chev-1" width="16" height="16" fill="none" stroke="#6b7280" stroke-width="2.5" viewBox="0 0 24 24" style="flex-shrink:0;transition:transform .3s"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div id="body-1" style="max-height:0;overflow:hidden;transition:max-height .4s ease">
+            <div style="padding:20px;background:rgba(220,38,38,0.07);border-top:1px solid rgba(220,38,38,0.2)">
+              <div style="display:flex;gap:20px;align-items:center">
+                <img src="https://mansard.pl/wp-content/uploads/2024/01/Rynna_2-removebg-preview.png" alt="System rynnowy Frigg" style="width:130px;height:130px;object-fit:contain;flex-shrink:0;filter:brightness(1.2) drop-shadow(0 8px 24px rgba(0,0,0,0.6))">
+                <div style="flex:1">
+                  <div style="font-size:1rem;color:#e5e7eb;line-height:1.65;margin-bottom:14px">Stalowy system rynnowy dopasowany kolorystycznie do pokrycia. Trwaly, odporny na UV i korozje.</div>
+                  <ul style="list-style:none;padding:0;margin:0 0 16px;display:flex;flex-direction:column;gap:7px">
+                    <li style="font-size:.88rem;color:#f3f4f6;display:flex;align-items:center;gap:8px"><span style="color:#dc2626;font-size:12px">●</span> Pelna paleta kolorow RAL</li>
+                    <li style="font-size:.88rem;color:#f3f4f6;display:flex;align-items:center;gap:8px"><span style="color:#dc2626;font-size:12px">●</span> Rynny, rury spustowe, lancuchy</li>
+                    <li style="font-size:.88rem;color:#f3f4f6;display:flex;align-items:center;gap:8px"><span style="color:#dc2626;font-size:12px">●</span> Kompletne mocowania i akcesoria</li>
+                  </ul>
+                  <a href="/produkty/system-rynnowy-frigg/" style="font-size:.85rem;font-weight:700;color:#fff;background:#dc2626;text-decoration:none;display:inline-flex;align-items:center;gap:6px;padding:9px 18px;border-radius:8px">Zobacz produkt <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 2: Obrobki -->
+        <div id="acc-2" style="border-radius:14px;overflow:hidden;border:1px solid rgba(255,255,255,0.18);transition:border-color .2s">
+          <button onclick="toggleAcc(2)" style="width:100%;background:rgba(255,255,255,0.1);border:none;cursor:pointer;display:flex;align-items:center;gap:16px;padding:20px 22px;text-align:left">
+            <div style="width:36px;height:36px;background:rgba(220,38,38,0.2);border:1.5px solid rgba(220,38,38,0.4);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;color:#dc2626;flex-shrink:0">2</div>
+            <img src="https://mansard.pl/wp-content/uploads/2024/01/Pas_nardrynnowy_2_1-removebg-preview.png" alt="" style="width:64px;height:64px;object-fit:contain;flex-shrink:0;filter:brightness(1.2)">
+            <div style="flex:1">
+              <div style="font-size:10px;font-weight:700;letter-spacing:.12em;color:#dc2626;text-transform:uppercase;margin-bottom:3px">Na wymiar</div>
+              <div style="font-size:1rem;font-weight:800;color:#fff">Obróbki blacharskie</div>
+              <div style="font-size:.78rem;color:#9ca3af;margin-top:2px">Gąsior, pasy, kominki wentylacyjne</div>
+            </div>
+            <svg id="chev-2" width="16" height="16" fill="none" stroke="#6b7280" stroke-width="2.5" viewBox="0 0 24 24" style="flex-shrink:0;transition:transform .3s"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div id="body-2" style="max-height:0;overflow:hidden;transition:max-height .4s ease">
+            <div style="padding:20px;background:rgba(220,38,38,0.07);border-top:1px solid rgba(220,38,38,0.2)">
+              <div style="display:flex;gap:20px;align-items:center">
+                <img src="https://mansard.pl/wp-content/uploads/2024/01/Pas_nardrynnowy_2_1-removebg-preview.png" alt="Obrobki blacharskie" style="width:130px;height:130px;object-fit:contain;flex-shrink:0;filter:brightness(1.2) drop-shadow(0 8px 24px rgba(0,0,0,0.6))">
+                <div style="flex:1">
+                  <div style="font-size:1rem;color:#e5e7eb;line-height:1.65;margin-bottom:14px">Gasior, pasy nadrynnowe, kominki wentylacyjne - ciete na Twoj konkretny wymiar, nie w modulach.</div>
+                  <ul style="list-style:none;padding:0;margin:0 0 16px;display:flex;flex-direction:column;gap:7px">
+                    <li style="font-size:.88rem;color:#f3f4f6;display:flex;align-items:center;gap:8px"><span style="color:#dc2626;font-size:12px">●</span> Ciete na wymiar - zero odpadow</li>
+                    <li style="font-size:.88rem;color:#f3f4f6;display:flex;align-items:center;gap:8px"><span style="color:#dc2626;font-size:12px">●</span> Gasior, pas nadrynnowy, obrobka komina</li>
+                    <li style="font-size:.88rem;color:#f3f4f6;display:flex;align-items:center;gap:8px"><span style="color:#dc2626;font-size:12px">●</span> Kolor dopasowany do pokrycia</li>
+                  </ul>
+                  <a href="/produkty/obrobki-blacharskie/" style="font-size:.85rem;font-weight:700;color:#fff;background:#dc2626;text-decoration:none;display:inline-flex;align-items:center;gap:6px;padding:9px 18px;border-radius:8px">Zobacz produkt <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 3: Parapety -->
+        <div id="acc-3" style="border-radius:14px;overflow:hidden;border:1px solid rgba(255,255,255,0.18);transition:border-color .2s">
+          <button onclick="toggleAcc(3)" style="width:100%;background:rgba(255,255,255,0.1);border:none;cursor:pointer;display:flex;align-items:center;gap:16px;padding:20px 22px;text-align:left">
+            <div style="width:36px;height:36px;background:rgba(220,38,38,0.2);border:1.5px solid rgba(220,38,38,0.4);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;color:#dc2626;flex-shrink:0">3</div>
+            <img src="https://mansard.pl/wp-content/uploads/2024/01/Parapet_podgiety_1-removebg-preview.png" alt="" style="width:64px;height:64px;object-fit:contain;flex-shrink:0;filter:brightness(1.2)">
+            <div style="flex:1">
+              <div style="font-size:10px;font-weight:700;letter-spacing:.12em;color:#dc2626;text-transform:uppercase;margin-bottom:3px">Zewnętrzne</div>
+              <div style="font-size:1rem;font-weight:800;color:#fff">Parapety</div>
+              <div style="font-size:.78rem;color:#9ca3af;margin-top:2px">Aluminiowe i stalowe, cięte na wymiar</div>
+            </div>
+            <svg id="chev-3" width="16" height="16" fill="none" stroke="#6b7280" stroke-width="2.5" viewBox="0 0 24 24" style="flex-shrink:0;transition:transform .3s"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div id="body-3" style="max-height:0;overflow:hidden;transition:max-height .4s ease">
+            <div style="padding:20px;background:rgba(220,38,38,0.07);border-top:1px solid rgba(220,38,38,0.2)">
+              <div style="display:flex;gap:20px;align-items:center">
+                <img src="https://mansard.pl/wp-content/uploads/2024/01/Parapet_podgiety_1-removebg-preview.png" alt="Parapety zewnetrzne" style="width:130px;height:130px;object-fit:contain;flex-shrink:0;filter:brightness(1.2) drop-shadow(0 8px 24px rgba(0,0,0,0.6))">
+                <div style="flex:1">
+                  <div style="font-size:1rem;color:#e5e7eb;line-height:1.65;margin-bottom:14px">Parapety zewnetrzne aluminiowe i stalowe - ciete na Twoj wymiar i dopasowane kolorystycznie do dachu.</div>
+                  <ul style="list-style:none;padding:0;margin:0 0 16px;display:flex;flex-direction:column;gap:7px">
+                    <li style="font-size:.88rem;color:#f3f4f6;display:flex;align-items:center;gap:8px"><span style="color:#dc2626;font-size:12px">●</span> Aluminium lub stal powlekana</li>
+                    <li style="font-size:.88rem;color:#f3f4f6;display:flex;align-items:center;gap:8px"><span style="color:#dc2626;font-size:12px">●</span> Ciete dokladnie na wymiar</li>
+                    <li style="font-size:.88rem;color:#f3f4f6;display:flex;align-items:center;gap:8px"><span style="color:#dc2626;font-size:12px">●</span> Pelna paleta kolorow RAL</li>
+                  </ul>
+                  <a href="/produkty/parapety/" style="font-size:.85rem;font-weight:700;color:#fff;background:#dc2626;text-decoration:none;display:inline-flex;align-items:center;gap:6px;padding:9px 18px;border-radius:8px">Zobacz produkt <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <script>
+          var accOpen = null;
+          function toggleAcc(n) {
+            if (accOpen === n) {
+              document.getElementById('body-'+n).style.maxHeight = '0';
+              document.getElementById('chev-'+n).style.transform = '';
+              document.getElementById('acc-'+n).style.borderColor = 'rgba(255,255,255,0.1)';
+              accOpen = null;
+            } else {
+              if (accOpen !== null) {
+                document.getElementById('body-'+accOpen).style.maxHeight = '0';
+                document.getElementById('chev-'+accOpen).style.transform = '';
+                document.getElementById('acc-'+accOpen).style.borderColor = 'rgba(255,255,255,0.1)';
+              }
+              document.getElementById('body-'+n).style.maxHeight = '300px';
+              document.getElementById('chev-'+n).style.transform = 'rotate(180deg)';
+              document.getElementById('acc-'+n).style.borderColor = 'rgba(220,38,38,0.4)';
+              accOpen = n;
+            }
+          }
+          document.addEventListener('DOMContentLoaded', function(){ toggleAcc(1); });
+        </script>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     5. PARTNERZY / PRODUKTY W OFERCIE
+══════════════════════════════════════ -->
+<section class="py-20" style="background:#fff;overflow:hidden">
+  <div class="max-w-7xl mx-auto px-6 mb-10">
+    <div class="flex items-end justify-between mb-10">
+      <div>
+        <p class="section-label mb-3">Produkty w naszej ofercie</p>
+        <h2 class="text-3xl font-bold text-gray-900" style="letter-spacing:-0.02em">Współpracujemy z najlepszymi</h2>
+      </div>
+      <p class="text-gray-500 text-sm max-w-xs text-right leading-relaxed hidden lg:block">Budmat, Blachotrapez i drewno konstrukcyjne - wszystko w jednym miejscu.</p>
+    </div>
+    <!-- Logo partnerów -->
+    <div style="display:flex;align-items:center;gap:40px;flex-wrap:wrap">
+      <div style="display:flex;align-items:center;gap:10px;padding:16px 28px;background:#f8f9fa;border:1px solid #e9ecef;border-radius:12px">
+        <img src="https://www.blachotrapez.eu/themes/img/logo.svg" alt="Blachotrapez" style="height:28px;object-fit:contain;filter:grayscale(100%);opacity:.7;transition:filter .2s,opacity .2s" onmouseover="this.style.filter='grayscale(0%)';this.style.opacity='1'" onmouseout="this.style.filter='grayscale(100%)';this.style.opacity='.7'">
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;padding:16px 28px;background:#f8f9fa;border:1px solid #e9ecef;border-radius:12px">
+        <img src="https://www.budmat.com/assets/img/logo.png" alt="Budmat" style="height:28px;object-fit:contain;filter:grayscale(100%);opacity:.7;transition:filter .2s,opacity .2s" onmouseover="this.style.filter='grayscale(0%)';this.style.opacity='1'" onmouseout="this.style.filter='grayscale(100%)';this.style.opacity='.7'">
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;padding:16px 28px;background:#f8f9fa;border:1px solid #e9ecef;border-radius:12px">
+        <img src="https://www.drewhat.pl/wp-content/uploads/2025/06/logo.svg" alt="Drewhat" style="height:28px;object-fit:contain;filter:grayscale(100%);opacity:.7;transition:filter .2s,opacity .2s" onmouseover="this.style.filter='grayscale(0%)';this.style.opacity='1'" onmouseout="this.style.filter='grayscale(100%)';this.style.opacity='.7'">
+      </div>
+    </div>
+  </div>
+  <div style="position:relative">
+    <div style="position:absolute;left:0;top:0;bottom:0;width:120px;background:linear-gradient(to right,#fff,transparent);z-index:2;pointer-events:none"></div>
+    <div style="position:absolute;right:0;top:0;bottom:0;width:120px;background:linear-gradient(to left,#fff,transparent);z-index:2;pointer-events:none"></div>
+    <div style="display:flex;gap:20px;animation:partnersScroll 40s linear infinite;width:max-content;padding:8px 0" onmouseover="this.style.animationPlayState='paused'" onmouseout="this.style.animationPlayState='running'">
+      <div style="flex-shrink:0;width:260px;border-radius:16px;overflow:hidden;background:#f8f9fa;border:1px solid #e9ecef"><div style="background:#1e2124;height:180px;overflow:hidden"><img src="https://www.blachotrapez.eu/uploads/p/2/4/2/0/0/l/blachodachowka-gontopodobna-janosik.webp" alt="Gont blaszany Janosik" style="width:100%;height:100%;object-fit:cover"></div><div style="padding:16px 18px"><div style="font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#dc2626;margin-bottom:4px">Blachotrapez</div><div style="font-size:.95rem;font-weight:700;color:#111827">Gont blaszany Janosik</div><div style="font-size:.78rem;color:#9ca3af;margin-top:3px">Blacha gontopodobna z posypką</div></div></div>
+      <div style="flex-shrink:0;width:260px;border-radius:16px;overflow:hidden;background:#f8f9fa;border:1px solid #e9ecef"><div style="background:#1e2124;height:180px;overflow:hidden"><img src="https://www.blachotrapez.eu/uploads/p/2/9/7/2/9/l/thunder-min.webp" alt="Blacha z posypką Thunder" style="width:100%;height:100%;object-fit:cover"></div><div style="padding:16px 18px"><div style="font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#dc2626;margin-bottom:4px">Blachotrapez</div><div style="font-size:.95rem;font-weight:700;color:#111827">Blacha z posypką Thunder</div><div style="font-size:.78rem;color:#9ca3af;margin-top:3px">Posypka mineralna, mat</div></div></div>
+      <div style="flex-shrink:0;width:260px;border-radius:16px;overflow:hidden;background:#f8f9fa;border:1px solid #e9ecef"><div style="background:#1e2124;height:180px;overflow:hidden"><img src="https://www.blachotrapez.eu/uploads/p/2/9/0/4/2/l/blachodachowka-kuga.webp" alt="Blachodachówka Kuga" style="width:100%;height:100%;object-fit:cover"></div><div style="padding:16px 18px"><div style="font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#dc2626;margin-bottom:4px">Blachotrapez</div><div style="font-size:.95rem;font-weight:700;color:#111827">Blachodachówka Kuga</div><div style="font-size:.78rem;color:#9ca3af;margin-top:3px">Panel dachowy modułowy</div></div></div>
+      <div style="flex-shrink:0;width:260px;border-radius:16px;overflow:hidden;background:#f8f9fa;border:1px solid #e9ecef"><div style="background:#1e2124;height:180px;overflow:hidden"><img src="https://www.blachotrapez.eu/uploads/p/3/1/3/0/2/l/blachodachowka-estima.webp" alt="Blachodachówka Estima" style="width:100%;height:100%;object-fit:cover"></div><div style="padding:16px 18px"><div style="font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#dc2626;margin-bottom:4px">Blachotrapez</div><div style="font-size:.95rem;font-weight:700;color:#111827">Blachodachówka Estima</div><div style="font-size:.78rem;color:#9ca3af;margin-top:3px">Nowoczesny profil dachowy</div></div></div>
+      <div style="flex-shrink:0;width:260px;border-radius:16px;overflow:hidden;background:#f8f9fa;border:1px solid #e9ecef"><div style="background:#1e2124;height:180px;overflow:hidden"><img src="https://www.budmat.com/static/image/lg/budmat-blachodachowka-modulowa-garda-arkusz-20240109.jpg" alt="Blachodachówka Garda" style="width:100%;height:100%;object-fit:cover"></div><div style="padding:16px 18px"><div style="font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#dc2626;margin-bottom:4px">Budmat</div><div style="font-size:.95rem;font-weight:700;color:#111827">Blachodachówka Garda</div><div style="font-size:.78rem;color:#9ca3af;margin-top:3px">Blachodachówka modułowa</div></div></div>
+      <div style="flex-shrink:0;width:260px;border-radius:16px;overflow:hidden;background:#f8f9fa;border:1px solid #e9ecef"><div style="background:#f0f0f0;height:180px;overflow:hidden"><img src="https://budmat-psb.pl/wp-content/uploads/2025/09/flamingoiq-rynna-antracyt-036-800x800.webp" alt="Rynna kwadratowa Flamingo IQ" style="width:100%;height:100%;object-fit:cover"></div><div style="padding:16px 18px"><div style="font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#dc2626;margin-bottom:4px">Budmat</div><div style="font-size:.95rem;font-weight:700;color:#111827">Rynna kwadratowa Flamingo IQ</div><div style="font-size:.78rem;color:#9ca3af;margin-top:3px">System rynnowy kwadratowy</div></div></div>
+      <div style="flex-shrink:0;width:260px;border-radius:16px;overflow:hidden;background:#f8f9fa;border:1px solid #e9ecef"><div style="background:#f0f0f0;height:180px;overflow:hidden"><img src="https://mrowka.com.pl/files/InfoverProduct/sr/l740s0hd0nfd/Photos/jr6adqg0l367vo/ShowWebp_rynna-pvc-proaqua-125-mm---4-mb-budmat-plock_1.webp" alt="Rynna PVC ProAqua" style="width:100%;height:100%;object-fit:cover"></div><div style="padding:16px 18px"><div style="font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#dc2626;margin-bottom:4px">Budmat</div><div style="font-size:.95rem;font-weight:700;color:#111827">Rynna PVC ProAqua</div><div style="font-size:.78rem;color:#9ca3af;margin-top:3px">System rynnowy plastikowy</div></div></div>
+      <div style="flex-shrink:0;width:260px;border-radius:16px;overflow:hidden;background:#f8f9fa;border:1px solid #e9ecef"><div style="background:#1e2124;height:180px;overflow:hidden"><img src="https://www.drewhat.pl/wp-content/uploads/2026/01/kvh-1.jpeg" alt="Łaty i kontrłaty KVH" style="width:100%;height:100%;object-fit:cover"></div><div style="padding:16px 18px"><div style="font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#dc2626;margin-bottom:4px">Drewhat</div><div style="font-size:.95rem;font-weight:700;color:#111827">Łaty i kontrłaty KVH</div><div style="font-size:.78rem;color:#9ca3af;margin-top:3px">Drewno konstrukcyjne na dach</div></div></div>
+      <div style="flex-shrink:0;width:260px;border-radius:16px;overflow:hidden;background:#f8f9fa;border:1px solid #e9ecef"><div style="background:#1e2124;height:180px;overflow:hidden"><img src="https://www.drewhat.pl/wp-content/uploads/2025/06/Image.png" alt="Wiązary drewniane" style="width:100%;height:100%;object-fit:cover"></div><div style="padding:16px 18px"><div style="font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#dc2626;margin-bottom:4px">Drewhat</div><div style="font-size:.95rem;font-weight:700;color:#111827">Wiązary drewniane</div><div style="font-size:.78rem;color:#9ca3af;margin-top:3px">Prefabrykowana konstrukcja dachu</div></div></div>
+      <!-- duplikaty -->
+      <div style="flex-shrink:0;width:260px;border-radius:16px;overflow:hidden;background:#f8f9fa;border:1px solid #e9ecef"><div style="background:#1e2124;height:180px;overflow:hidden"><img src="https://www.blachotrapez.eu/uploads/p/2/4/2/0/0/l/blachodachowka-gontopodobna-janosik.webp" alt="" style="width:100%;height:100%;object-fit:cover"></div><div style="padding:16px 18px"><div style="font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#dc2626;margin-bottom:4px">Blachotrapez</div><div style="font-size:.95rem;font-weight:700;color:#111827">Gont blaszany Janosik</div><div style="font-size:.78rem;color:#9ca3af;margin-top:3px">Blacha gontopodobna z posypką</div></div></div>
+      <div style="flex-shrink:0;width:260px;border-radius:16px;overflow:hidden;background:#f8f9fa;border:1px solid #e9ecef"><div style="background:#1e2124;height:180px;overflow:hidden"><img src="https://www.blachotrapez.eu/uploads/p/2/9/7/2/9/l/thunder-min.webp" alt="" style="width:100%;height:100%;object-fit:cover"></div><div style="padding:16px 18px"><div style="font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#dc2626;margin-bottom:4px">Blachotrapez</div><div style="font-size:.95rem;font-weight:700;color:#111827">Blacha z posypką Thunder</div><div style="font-size:.78rem;color:#9ca3af;margin-top:3px">Posypka mineralna, mat</div></div></div>
+      <div style="flex-shrink:0;width:260px;border-radius:16px;overflow:hidden;background:#f8f9fa;border:1px solid #e9ecef"><div style="background:#1e2124;height:180px;overflow:hidden"><img src="https://www.blachotrapez.eu/uploads/p/2/9/0/4/2/l/blachodachowka-kuga.webp" alt="" style="width:100%;height:100%;object-fit:cover"></div><div style="padding:16px 18px"><div style="font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#dc2626;margin-bottom:4px">Blachotrapez</div><div style="font-size:.95rem;font-weight:700;color:#111827">Blachodachówka Kuga</div><div style="font-size:.78rem;color:#9ca3af;margin-top:3px">Panel dachowy modułowy</div></div></div>
+      <div style="flex-shrink:0;width:260px;border-radius:16px;overflow:hidden;background:#f8f9fa;border:1px solid #e9ecef"><div style="background:#1e2124;height:180px;overflow:hidden"><img src="https://www.blachotrapez.eu/uploads/p/3/1/3/0/2/l/blachodachowka-estima.webp" alt="" style="width:100%;height:100%;object-fit:cover"></div><div style="padding:16px 18px"><div style="font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#dc2626;margin-bottom:4px">Blachotrapez</div><div style="font-size:.95rem;font-weight:700;color:#111827">Blachodachówka Estima</div><div style="font-size:.78rem;color:#9ca3af;margin-top:3px">Nowoczesny profil dachowy</div></div></div>
+      <div style="flex-shrink:0;width:260px;border-radius:16px;overflow:hidden;background:#f8f9fa;border:1px solid #e9ecef"><div style="background:#1e2124;height:180px;overflow:hidden"><img src="https://www.budmat.com/static/image/lg/budmat-blachodachowka-modulowa-garda-arkusz-20240109.jpg" alt="" style="width:100%;height:100%;object-fit:cover"></div><div style="padding:16px 18px"><div style="font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#dc2626;margin-bottom:4px">Budmat</div><div style="font-size:.95rem;font-weight:700;color:#111827">Blachodachówka Garda</div><div style="font-size:.78rem;color:#9ca3af;margin-top:3px">Blachodachówka modułowa</div></div></div>
+      <div style="flex-shrink:0;width:260px;border-radius:16px;overflow:hidden;background:#f8f9fa;border:1px solid #e9ecef"><div style="background:#f0f0f0;height:180px;overflow:hidden"><img src="https://budmat-psb.pl/wp-content/uploads/2025/09/flamingoiq-rynna-antracyt-036-800x800.webp" alt="" style="width:100%;height:100%;object-fit:cover"></div><div style="padding:16px 18px"><div style="font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#dc2626;margin-bottom:4px">Budmat</div><div style="font-size:.95rem;font-weight:700;color:#111827">Rynna kwadratowa Flamingo IQ</div><div style="font-size:.78rem;color:#9ca3af;margin-top:3px">System rynnowy kwadratowy</div></div></div>
+      <div style="flex-shrink:0;width:260px;border-radius:16px;overflow:hidden;background:#f8f9fa;border:1px solid #e9ecef"><div style="background:#f0f0f0;height:180px;overflow:hidden"><img src="https://mrowka.com.pl/files/InfoverProduct/sr/l740s0hd0nfd/Photos/jr6adqg0l367vo/ShowWebp_rynna-pvc-proaqua-125-mm---4-mb-budmat-plock_1.webp" alt="" style="width:100%;height:100%;object-fit:cover"></div><div style="padding:16px 18px"><div style="font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#dc2626;margin-bottom:4px">Budmat</div><div style="font-size:.95rem;font-weight:700;color:#111827">Rynna PVC ProAqua</div><div style="font-size:.78rem;color:#9ca3af;margin-top:3px">System rynnowy plastikowy</div></div></div>
+      <div style="flex-shrink:0;width:260px;border-radius:16px;overflow:hidden;background:#f8f9fa;border:1px solid #e9ecef"><div style="background:#1e2124;height:180px;overflow:hidden"><img src="https://www.drewhat.pl/wp-content/uploads/2026/01/kvh-1.jpeg" alt="" style="width:100%;height:100%;object-fit:cover"></div><div style="padding:16px 18px"><div style="font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#dc2626;margin-bottom:4px">Drewhat</div><div style="font-size:.95rem;font-weight:700;color:#111827">Łaty i kontrłaty KVH</div><div style="font-size:.78rem;color:#9ca3af;margin-top:3px">Drewno konstrukcyjne na dach</div></div></div>
+      <div style="flex-shrink:0;width:260px;border-radius:16px;overflow:hidden;background:#f8f9fa;border:1px solid #e9ecef"><div style="background:#1e2124;height:180px;overflow:hidden"><img src="https://www.drewhat.pl/wp-content/uploads/2025/06/Image.png" alt="" style="width:100%;height:100%;object-fit:cover"></div><div style="padding:16px 18px"><div style="font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#dc2626;margin-bottom:4px">Drewhat</div><div style="font-size:.95rem;font-weight:700;color:#111827">Wiązary drewniane</div><div style="font-size:.78rem;color:#9ca3af;margin-top:3px">Prefabrykowana konstrukcja dachu</div></div></div>
+    </div>
+    </div>
+  </div>
+  <style>
+    @keyframes partnersScroll {
+      from { transform: translateX(0) }
+      to   { transform: translateX(-50%) }
+    }
+  </style>
+</section>
+
+<!-- ══════════════════════════════════════
+     6. WYCENA CTA
+══════════════════════════════════════ -->
+<section class="wycena-bg py-20" id="wycena">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="wycena-card">
+      <div class="wycena-label">BEZPŁATNA WYCENA</div>
+      <div class="grid grid-cols-1 md:grid-cols-[3fr_2fr] gap-8 p-8 md:p-12 items-center">
+        <div class="relative">
+          <div style="background:rgb(254,242,242);border-radius:16px;border:1.5px solid rgba(220,38,38,0.3);box-shadow:0 2px 12px rgba(220,38,38,0.08);padding:32px">
+            <h2 class="text-3xl lg:text-4xl font-bold text-gray-700 mb-4">
+              Wyceń dach w <span style="color:#dc2626">60 sekund</span>
+            </h2>
+            <p class="text-gray-600 text-base leading-relaxed mb-1">Sprawdź orientacyjny koszt pokrycia dachu blachą trapezową T18.</p>
+            <p class="text-gray-600 text-base leading-relaxed mb-6">Podaj podstawowe informacje o dachu i otrzymaj wycenę bez zobowiązań.</p>
+            <a href="/bezplatna-wycena/" class="btn-red" style="width:fit-content;display:inline-block">Wyceń dach</a>
+            <div class="text-gray-400 text-sm mt-3">Darmowa wycena • Bez zobowiązań</div>
+          </div>
+          <div class="hidden md:flex flex-col items-center gap-1 absolute" style="right:-44px;top:50%;transform:translateY(-50%)">
+            <svg width="72" height="40" viewBox="0 0 72 40" fill="none"><path d="M6 30 C18 30, 28 8, 62 16" stroke="#dc2626" stroke-width="1.5" fill="none" stroke-linecap="round"/><path d="M56 10 L64 17 L56 22" stroke="#dc2626" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span class="text-xs font-semibold" style="color:#dc2626;white-space:nowrap">Zobacz jak to działa</span>
+          </div>
+        </div>
+        <div class="flex items-center justify-center">
+          <img src="https://mansard.pl/wp-content/uploads/2026/03/Wycena_gif.gif" alt="Jak wycenić dach" class="rounded-xl object-contain" style="max-height:460px;max-width:100%" />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     7. USŁUGI DODATKOWE
+══════════════════════════════════════ -->
+<section style="background:#f8f9fa;padding:52px 0;border-top:1px solid #e9ecef">
+  <div class="max-w-6xl mx-auto px-6">
+
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:28px">
+      <div>
+        <p class="section-label mb-1">Usługi dodatkowe</p>
+        <h2 style="font-size:1.6rem;font-weight:800;color:#111827;letter-spacing:-0.025em;line-height:1.2">Tniemy i malujemy — z jednej hali</h2>
+      </div>
+      <a href="/kontakt/" style="display:inline-flex;align-items:center;gap:7px;background:#dc2626;color:#fff;font-weight:700;font-size:.85rem;padding:10px 20px;border-radius:9px;text-decoration:none" onmouseover="this.style.background='#b91c1c'" onmouseout="this.style.background='#dc2626'">
+        Zapytaj o wycenę
+        <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+      </a>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+
+      <!-- Laser -->
+      <div style="background:#fff;border:1px solid #e2e5ea;border-radius:16px;overflow:hidden;display:flex;box-shadow:0 1px 8px rgba(0,0,0,0.05)">
+        <div style="width:200px;flex-shrink:0;position:relative;overflow:hidden;background:#000">
+          <video autoplay muted loop playsinline style="width:100%;height:100%;object-fit:cover;object-position:50% center;display:block;position:absolute;inset:0">
+            <source src="/ciecie-laserem.mp4" type="video/mp4">
+          </video>
+          <div style="position:absolute;inset:0;background:linear-gradient(to right,transparent 60%,rgba(0,0,0,0.3))"></div>
+        </div>
+        <div style="padding:20px 22px;flex:1">
+          <div style="font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#dc2626;margin-bottom:5px">Laser Fiber</div>
+          <div style="font-size:1rem;font-weight:800;color:#111827;margin-bottom:8px">Cięcie laserowe</div>
+          <p style="font-size:.82rem;color:#6b7280;line-height:1.65;margin-bottom:12px">Precyzyjne cięcie stali, aluminium i metali do 4000 mm. Krótkie terminy, cięcie pod wymiar.</p>
+          <div style="display:flex;gap:6px;flex-wrap:wrap">
+            <span style="font-size:11px;font-weight:600;color:#374151;background:#f3f4f6;border:1px solid #e5e7eb;border-radius:5px;padding:3px 8px">Do 4000 mm</span>
+            <span style="font-size:11px;font-weight:600;color:#374151;background:#f3f4f6;border:1px solid #e5e7eb;border-radius:5px;padding:3px 8px">Stal / Al / Cu</span>
+            <span style="font-size:11px;font-weight:600;color:#374151;background:#f3f4f6;border:1px solid #e5e7eb;border-radius:5px;padding:3px 8px">±0,1 mm</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Powder -->
+      <div style="background:#fff;border:1px solid #e2e5ea;border-radius:16px;overflow:hidden;display:flex;box-shadow:0 1px 8px rgba(0,0,0,0.05)">
+        <div style="width:200px;flex-shrink:0;position:relative;overflow:hidden;background:#000">
+          <video autoplay muted loop playsinline style="width:100%;height:100%;object-fit:cover;display:block;position:absolute;inset:0">
+            <source src="/malowanie-proszkowe.mp4" type="video/mp4">
+          </video>
+          <div style="position:absolute;inset:0;background:linear-gradient(to right,transparent 60%,rgba(0,0,0,0.3))"></div>
+        </div>
+        <div style="padding:20px 22px;flex:1">
+          <div style="font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#dc2626;margin-bottom:5px">Lakiernia RAL</div>
+          <div style="font-size:1rem;font-weight:800;color:#111827;margin-bottom:8px">Malowanie proszkowe</div>
+          <p style="font-size:.82rem;color:#6b7280;line-height:1.65;margin-bottom:12px">Pełna paleta RAL, wymiary do 4000×2000 mm. Trwała powłoka odporna na korozję i UV.</p>
+          <div style="display:flex;gap:6px;flex-wrap:wrap">
+            <span style="font-size:11px;font-weight:600;color:#374151;background:#f3f4f6;border:1px solid #e5e7eb;border-radius:5px;padding:3px 8px">4000×2000 mm</span>
+            <span style="font-size:11px;font-weight:600;color:#374151;background:#f3f4f6;border:1px solid #e5e7eb;border-radius:5px;padding:3px 8px">Cała paleta RAL</span>
+            <span style="font-size:11px;font-weight:600;color:#374151;background:#f3f4f6;border:1px solid #e5e7eb;border-radius:5px;padding:3px 8px">Mat / Połysk</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     8. DLACZEGO MY
+══════════════════════════════════════ -->
+<section style="background:#f8f9fa;padding:72px 0;position:relative;overflow:hidden;border-top:1px solid #e9ecef">
+  <div style="position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 0% 50%,rgba(220,38,38,0.04) 0%,transparent 65%);pointer-events:none"></div>
+  <div class="max-w-6xl mx-auto px-6 relative z-10">
+
+    <!-- Header -->
+    <div style="max-width:560px;margin-bottom:52px">
+      <div class="section-label mb-3">Dlaczego Mansard</div>
+      <h2 style="font-size:clamp(1.8rem,3vw,2.4rem);font-weight:800;color:#111827;letter-spacing:-0.03em;line-height:1.15;margin-bottom:14px">Za co klienci<br>nas doceniają?</h2>
+      <p style="color:#6b7280;font-size:.95rem;line-height:1.7">Zebraliśmy to, co słyszymy najczęściej po realizacji. Każdy z tych punktów zaczął się od obawy — i skończył na ulżeniu.</p>
+    </div>
+
+    <!-- Story strips -->
+    <div style="display:flex;flex-direction:column;gap:14px">
+
+      <div style="background:#fff;border:1px solid #e2e5ea;border-top:4px solid #dc2626;border-radius:20px;display:flex;align-items:stretch;position:relative;overflow:hidden;box-shadow:0 2px 16px rgba(0,0,0,0.06)">
+
+        <!-- Corner triangle -->
+        <div style="position:absolute;top:0;left:0;width:0;height:0;border-style:solid;border-width:56px 56px 0 0;border-color:#dc2626 transparent transparent transparent;opacity:.12;pointer-events:none"></div>
+
+        <!-- Watermark -->
+        <div style="position:absolute;right:-10px;top:-20px;font-size:9rem;font-weight:900;color:#000;opacity:.025;line-height:1;pointer-events:none;user-select:none;font-family:sans-serif">01</div>
+
+        <!-- Problem -->
+        <div style="flex:1.1;padding:28px 28px 28px 32px;position:relative;min-width:0;background:linear-gradient(135deg,rgba(220,38,38,0.05) 0%,transparent 60%)">
+          <div style="display:inline-flex;align-items:center;gap:6px;background:rgba(220,38,38,0.1);border:1px solid rgba(220,38,38,0.22);border-radius:6px;padding:4px 10px;margin-bottom:16px">
+            <span style="font-size:10px;font-weight:800;color:#dc2626;margin-right:2px">01</span><span style="font-size:10px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:#dc2626">Problem</span>
+          </div>
+          <p style="font-size:1.15rem;font-style:italic;color:#1f2937;line-height:1.62;margin:0 0 14px;font-weight:600">"18% materiału wylądowało w kontenerze — a orientacyjna wycena tego nie wliczała."</p>
+          <p style="font-size:.86rem;color:#9ca3af;line-height:1.65;margin:0">Zamówił blachę ze standardowych arkuszy. Ekipa docięła na miejscu, resztki za garaż. Dopłacił do rachunku, którego się nie spodziewał.</p>
+        </div>
+
+        <div style="display:flex;align-items:center;justify-content:center;position:relative;width:40px;flex-shrink:0">
+          <div style="position:absolute;top:0;bottom:0;left:50%;width:1px;background:#e9ecef"></div>
+          <div style="position:relative;width:26px;height:26px;border-radius:50%;background:#f3f4f6;border:1px solid #e5e7eb;display:flex;align-items:center;justify-content:center;z-index:1">
+            <svg width="10" height="10" fill="none" stroke="#dc2626" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+          </div>
+        </div>
+
+        <!-- Co robimy -->
+        <div style="flex:1;padding:28px 28px;min-width:0">
+          <div style="display:inline-flex;align-items:center;gap:6px;background:#f3f4f6;border:1px solid #e5e7eb;border-radius:6px;padding:4px 10px;margin-bottom:16px">
+            <svg width="12" height="12" fill="none" stroke="#dc2626" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
+            <span style="font-size:10px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:#6b7280">Co robimy</span>
+          </div>
+          <div style="font-size:1rem;font-weight:800;color:#111827;margin-bottom:8px">Docinamy co do centymetra</div>
+          <p style="font-size:.88rem;color:#6b7280;line-height:1.72;margin:0">Każdy arkusz wycinamy laserowo pod Twój projekt. Dostarczamy ponumerowane — dekarz tylko montuje, zero ścinków na budowie.</p>
+        </div>
+
+        <div style="display:flex;align-items:center;justify-content:center;position:relative;width:40px;flex-shrink:0">
+          <div style="position:absolute;top:0;bottom:0;left:50%;width:1px;background:#e9ecef"></div>
+          <div style="position:relative;width:26px;height:26px;border-radius:50%;background:#f3f4f6;border:1px solid #e5e7eb;display:flex;align-items:center;justify-content:center;z-index:1">
+            <svg width="10" height="10" fill="none" stroke="#dc2626" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+          </div>
+        </div>
+
+        <!-- Efekt -->
+        <div style="flex:0.85;padding:28px 28px;min-width:0;background:linear-gradient(135deg,rgba(220,38,38,0.04) 0%,transparent 70%);border-left:1px solid #f0f0f0">
+          <div style="display:inline-flex;align-items:center;gap:6px;background:rgba(220,38,38,0.1);border:1px solid rgba(220,38,38,0.22);border-radius:6px;padding:4px 10px;margin-bottom:16px">
+            <svg width="11" height="11" fill="none" stroke="#dc2626" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg><span style="font-size:10px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:#dc2626">Efekt</span>
+          </div>
+          <p style="font-size:.97rem;color:#374151;line-height:1.72;margin:0">Klient nie dopłaca za odpad. Wycena z początku zgadza się z fakturą na końcu.</p>
+        </div>
+
+      </div>
+
+      <div style="background:#fff;border:1px solid #e2e5ea;border-top:4px solid #ea580c;border-radius:20px;display:flex;align-items:stretch;position:relative;overflow:hidden;box-shadow:0 2px 16px rgba(0,0,0,0.06)">
+
+        <!-- Corner triangle -->
+        <div style="position:absolute;top:0;left:0;width:0;height:0;border-style:solid;border-width:56px 56px 0 0;border-color:#ea580c transparent transparent transparent;opacity:.12;pointer-events:none"></div>
+
+        <!-- Watermark -->
+        <div style="position:absolute;right:-10px;top:-20px;font-size:9rem;font-weight:900;color:#000;opacity:.025;line-height:1;pointer-events:none;user-select:none;font-family:sans-serif">02</div>
+
+        <!-- Problem -->
+        <div style="flex:1.1;padding:28px 28px 28px 32px;position:relative;min-width:0;background:linear-gradient(135deg,rgba(234,88,12,0.05) 0%,transparent 60%)">
+          <div style="display:inline-flex;align-items:center;gap:6px;background:rgba(234,88,12,0.1);border:1px solid rgba(234,88,12,0.22);border-radius:6px;padding:4px 10px;margin-bottom:16px">
+            <span style="font-size:10px;font-weight:800;color:#ea580c;margin-right:2px">02</span><span style="font-size:10px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:#ea580c">Problem</span>
+          </div>
+          <p style="font-size:1.15rem;font-style:italic;color:#1f2937;line-height:1.62;margin:0 0 14px;font-weight:600">"Dostawa rynien opóźniona o 12 dni. Ekipa już stała na rusztowaniu."</p>
+          <p style="font-size:.86rem;color:#9ca3af;line-height:1.65;margin:0">Rynny zamawiał osobno, z magazynu pod Krakowem. Dach czekał odkryty na deszcz, a licznik szedł.</p>
+        </div>
+
+        <div style="display:flex;align-items:center;justify-content:center;position:relative;width:40px;flex-shrink:0">
+          <div style="position:absolute;top:0;bottom:0;left:50%;width:1px;background:#e9ecef"></div>
+          <div style="position:relative;width:26px;height:26px;border-radius:50%;background:#f3f4f6;border:1px solid #e5e7eb;display:flex;align-items:center;justify-content:center;z-index:1">
+            <svg width="10" height="10" fill="none" stroke="#ea580c" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+          </div>
+        </div>
+
+        <!-- Co robimy -->
+        <div style="flex:1;padding:28px 28px;min-width:0">
+          <div style="display:inline-flex;align-items:center;gap:6px;background:#f3f4f6;border:1px solid #e5e7eb;border-radius:6px;padding:4px 10px;margin-bottom:16px">
+            <svg width="12" height="12" fill="none" stroke="#ea580c" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <span style="font-size:10px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:#6b7280">Co robimy</span>
+          </div>
+          <div style="font-size:1rem;font-weight:800;color:#111827;margin-bottom:8px">Produkujemy w Sanoku, w 5 dni</div>
+          <p style="font-size:.88rem;color:#6b7280;line-height:1.72;margin:0">Blachę, rynny i obróbki robimy na miejscu — nie czekamy na magazyn centralny. Dzwonisz w poniedziałek, w czwartek transport jest pod domem.</p>
+        </div>
+
+        <div style="display:flex;align-items:center;justify-content:center;position:relative;width:40px;flex-shrink:0">
+          <div style="position:absolute;top:0;bottom:0;left:50%;width:1px;background:#e9ecef"></div>
+          <div style="position:relative;width:26px;height:26px;border-radius:50%;background:#f3f4f6;border:1px solid #e5e7eb;display:flex;align-items:center;justify-content:center;z-index:1">
+            <svg width="10" height="10" fill="none" stroke="#ea580c" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+          </div>
+        </div>
+
+        <!-- Efekt -->
+        <div style="flex:0.85;padding:28px 28px;min-width:0;background:linear-gradient(135deg,rgba(234,88,12,0.04) 0%,transparent 70%);border-left:1px solid #f0f0f0">
+          <div style="display:inline-flex;align-items:center;gap:6px;background:rgba(234,88,12,0.1);border:1px solid rgba(234,88,12,0.22);border-radius:6px;padding:4px 10px;margin-bottom:16px">
+            <svg width="11" height="11" fill="none" stroke="#ea580c" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg><span style="font-size:10px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:#ea580c">Efekt</span>
+          </div>
+          <p style="font-size:.97rem;color:#374151;line-height:1.72;margin:0">Ekipa kończy w terminie. Bez przestoju, bez szukania materiału u konkurencji w ostatniej chwili.</p>
+        </div>
+
+      </div>
+
+      <div style="background:#fff;border:1px solid #e2e5ea;border-top:4px solid #d97706;border-radius:20px;display:flex;align-items:stretch;position:relative;overflow:hidden;box-shadow:0 2px 16px rgba(0,0,0,0.06)">
+
+        <!-- Corner triangle -->
+        <div style="position:absolute;top:0;left:0;width:0;height:0;border-style:solid;border-width:56px 56px 0 0;border-color:#d97706 transparent transparent transparent;opacity:.12;pointer-events:none"></div>
+
+        <!-- Watermark -->
+        <div style="position:absolute;right:-10px;top:-20px;font-size:9rem;font-weight:900;color:#000;opacity:.025;line-height:1;pointer-events:none;user-select:none;font-family:sans-serif">03</div>
+
+        <!-- Problem -->
+        <div style="flex:1.1;padding:28px 28px 28px 32px;position:relative;min-width:0;background:linear-gradient(135deg,rgba(217,119,6,0.05) 0%,transparent 60%)">
+          <div style="display:inline-flex;align-items:center;gap:6px;background:rgba(217,119,6,0.1);border:1px solid rgba(217,119,6,0.22);border-radius:6px;padding:4px 10px;margin-bottom:16px">
+            <span style="font-size:10px;font-weight:800;color:#d97706;margin-right:2px">03</span><span style="font-size:10px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:#d97706">Problem</span>
+          </div>
+          <p style="font-size:1.15rem;font-style:italic;color:#1f2937;line-height:1.62;margin:0 0 14px;font-weight:600">"Dwa pełne dni i 180 km w trasie — zanim w ogóle zaczął kłaść blachę."</p>
+          <p style="font-size:.86rem;color:#9ca3af;line-height:1.65;margin:0">Tartak, hurtownia, sklep z rynnami. Trzy miejsca, trzy dostawy. Na budowie i tak czekał, bo coś zawsze dochodziło osobno.</p>
+        </div>
+
+        <div style="display:flex;align-items:center;justify-content:center;position:relative;width:40px;flex-shrink:0">
+          <div style="position:absolute;top:0;bottom:0;left:50%;width:1px;background:#e9ecef"></div>
+          <div style="position:relative;width:26px;height:26px;border-radius:50%;background:#f3f4f6;border:1px solid #e5e7eb;display:flex;align-items:center;justify-content:center;z-index:1">
+            <svg width="10" height="10" fill="none" stroke="#d97706" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+          </div>
+        </div>
+
+        <!-- Co robimy -->
+        <div style="flex:1;padding:28px 28px;min-width:0">
+          <div style="display:inline-flex;align-items:center;gap:6px;background:#f3f4f6;border:1px solid #e5e7eb;border-radius:6px;padding:4px 10px;margin-bottom:16px">
+            <svg width="12" height="12" fill="none" stroke="#d97706" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+            <span style="font-size:10px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:#6b7280">Co robimy</span>
+          </div>
+          <div style="font-size:1rem;font-weight:800;color:#111827;margin-bottom:8px">Jeden telefon, jeden transport</div>
+          <p style="font-size:.88rem;color:#6b7280;line-height:1.72;margin:0">Blachę, rynny, obróbki, wkręty, drewno na więźbę — wszystko zamawiasz u nas. Jeden rachunek, jedna dostawa pod dom.</p>
+        </div>
+
+        <div style="display:flex;align-items:center;justify-content:center;position:relative;width:40px;flex-shrink:0">
+          <div style="position:absolute;top:0;bottom:0;left:50%;width:1px;background:#e9ecef"></div>
+          <div style="position:relative;width:26px;height:26px;border-radius:50%;background:#f3f4f6;border:1px solid #e5e7eb;display:flex;align-items:center;justify-content:center;z-index:1">
+            <svg width="10" height="10" fill="none" stroke="#d97706" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+          </div>
+        </div>
+
+        <!-- Efekt -->
+        <div style="flex:0.85;padding:28px 28px;min-width:0;background:linear-gradient(135deg,rgba(217,119,6,0.04) 0%,transparent 70%);border-left:1px solid #f0f0f0">
+          <div style="display:inline-flex;align-items:center;gap:6px;background:rgba(217,119,6,0.1);border:1px solid rgba(217,119,6,0.22);border-radius:6px;padding:4px 10px;margin-bottom:16px">
+            <svg width="11" height="11" fill="none" stroke="#d97706" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg><span style="font-size:10px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:#d97706">Efekt</span>
+          </div>
+          <p style="font-size:.97rem;color:#374151;line-height:1.72;margin:0">Klient zajmuje się budową, a nie logistyką. Wszystko razem, jeden raz, jedno miejsce.</p>
+        </div>
+
+      </div>
+
+      <div style="background:#fff;border:1px solid #e2e5ea;border-top:4px solid #b45309;border-radius:20px;display:flex;align-items:stretch;position:relative;overflow:hidden;box-shadow:0 2px 16px rgba(0,0,0,0.06)">
+
+        <!-- Corner triangle -->
+        <div style="position:absolute;top:0;left:0;width:0;height:0;border-style:solid;border-width:56px 56px 0 0;border-color:#b45309 transparent transparent transparent;opacity:.12;pointer-events:none"></div>
+
+        <!-- Watermark -->
+        <div style="position:absolute;right:-10px;top:-20px;font-size:9rem;font-weight:900;color:#000;opacity:.025;line-height:1;pointer-events:none;user-select:none;font-family:sans-serif">04</div>
+
+        <!-- Problem -->
+        <div style="flex:1.1;padding:28px 28px 28px 32px;position:relative;min-width:0;background:linear-gradient(135deg,rgba(180,83,9,0.05) 0%,transparent 60%)">
+          <div style="display:inline-flex;align-items:center;gap:6px;background:rgba(180,83,9,0.1);border:1px solid rgba(180,83,9,0.22);border-radius:6px;padding:4px 10px;margin-bottom:16px">
+            <span style="font-size:10px;font-weight:800;color:#b45309;margin-right:2px">04</span><span style="font-size:10px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:#b45309">Problem</span>
+          </div>
+          <p style="font-size:1.15rem;font-style:italic;color:#1f2937;line-height:1.62;margin:0 0 14px;font-weight:600">"Każdy sprzedawca rekomendował coś innego. I każdy trafiał w swój najdroższy produkt."</p>
+          <p style="font-size:.86rem;color:#9ca3af;line-height:1.65;margin:0">Teresa przeglądała fora przez trzy wieczory. Rąbek czy trapez? 0,5 czy 0,7 mm? Nie wiedziała komu wierzyć.</p>
+        </div>
+
+        <div style="display:flex;align-items:center;justify-content:center;position:relative;width:40px;flex-shrink:0">
+          <div style="position:absolute;top:0;bottom:0;left:50%;width:1px;background:#e9ecef"></div>
+          <div style="position:relative;width:26px;height:26px;border-radius:50%;background:#f3f4f6;border:1px solid #e5e7eb;display:flex;align-items:center;justify-content:center;z-index:1">
+            <svg width="10" height="10" fill="none" stroke="#b45309" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+          </div>
+        </div>
+
+        <!-- Co robimy -->
+        <div style="flex:1;padding:28px 28px;min-width:0">
+          <div style="display:inline-flex;align-items:center;gap:6px;background:#f3f4f6;border:1px solid #e5e7eb;border-radius:6px;padding:4px 10px;margin-bottom:16px">
+            <svg width="12" height="12" fill="none" stroke="#b45309" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z"/></svg>
+            <span style="font-size:10px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:#6b7280">Co robimy</span>
+          </div>
+          <div style="font-size:1rem;font-weight:800;color:#111827;margin-bottom:8px">Szczera porada, bez wciskania</div>
+          <p style="font-size:.88rem;color:#6b7280;line-height:1.72;margin:0">Mówimy wprost: przy tym kącie rąbek sprawdzi się lepiej — i to nie jest nasz najdroższy wariant. Jak sąsiad-fachowiec, nie handlowiec z targetem.</p>
+        </div>
+
+        <div style="display:flex;align-items:center;justify-content:center;position:relative;width:40px;flex-shrink:0">
+          <div style="position:absolute;top:0;bottom:0;left:50%;width:1px;background:#e9ecef"></div>
+          <div style="position:relative;width:26px;height:26px;border-radius:50%;background:#f3f4f6;border:1px solid #e5e7eb;display:flex;align-items:center;justify-content:center;z-index:1">
+            <svg width="10" height="10" fill="none" stroke="#b45309" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+          </div>
+        </div>
+
+        <!-- Efekt -->
+        <div style="flex:0.85;padding:28px 28px;min-width:0;background:linear-gradient(135deg,rgba(180,83,9,0.04) 0%,transparent 70%);border-left:1px solid #f0f0f0">
+          <div style="display:inline-flex;align-items:center;gap:6px;background:rgba(180,83,9,0.1);border:1px solid rgba(180,83,9,0.22);border-radius:6px;padding:4px 10px;margin-bottom:16px">
+            <svg width="11" height="11" fill="none" stroke="#b45309" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg><span style="font-size:10px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:#b45309">Efekt</span>
+          </div>
+          <p style="font-size:.97rem;color:#374151;line-height:1.72;margin:0">Teresa wybrała rąbek 0,5 mm — dobry wybór za rozsądną cenę. Bez wątpliwości po fakcie.</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     8. PORÓWNANIE
+══════════════════════════════════════ -->
+<section class="compare-bg py-24">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 mb-3">Mansard vs inne firmy</h2>
+      <p class="text-gray-500 text-base">Zobacz, dlaczego klienci wybierają Mansard zamiast konkurencji</p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+      <!-- Left: inne firmy -->
+      <div class="compare-card-left">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-content:center">
+            <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+          </div>
+          <div>
+            <div class="font-bold text-gray-700 text-xl">Inne firmy</div>
+            <div class="text-sm text-gray-400">Standardowa oferta</div>
+          </div>
+        </div>
+        <div class="border-t border-gray-100 pt-6 space-y-6">
+          <div class="flex items-start gap-3"><div class="x-icon mt-0.5">✕</div><span class="text-gray-500 text-base">Cena podawana <strong>za 30 cm lub "za mb"</strong> - prawdziwy koszt m² trudny do wyliczenia i porównania</span></div>
+          <div class="flex items-start gap-3"><div class="x-icon mt-0.5">✕</div><span class="text-gray-500 text-base">Blacha <strong>0,4 mm sprzedawana jako standard</strong> - 20% cieńsza stal, ale cena podobna do 0,5 mm</span></div>
+          <div class="flex items-start gap-3"><div class="x-icon mt-0.5">✕</div><span class="text-gray-500 text-base">Obróbki w modułach <strong>2,5 m / 3,5 m</strong> - płacisz za stałą długość, nie za to co rzeczywiście potrzebujesz</span></div>
+          <div class="flex items-start gap-3"><div class="x-icon mt-0.5">✕</div><span class="text-gray-500 text-base">Tania blacha jako przynęta, <strong>drogie kalenice, śruby i obróbki</strong> - prawdziwy koszt wychodzi przy kompletacji</span></div>
+          <div class="flex items-start gap-3"><div class="x-icon mt-0.5">✕</div><span class="text-gray-500 text-base">Stałe długości arkuszy - <strong>zakłady po długości i odpady na dachu</strong>, montaż trudniejszy i droższy</span></div>
+          <div class="flex items-start gap-3"><div class="x-icon mt-0.5">✕</div><span class="text-gray-500 text-base">Wymiary liczone na papierze milimetrowym - <strong>bez weryfikacji na miejscu</strong>, błędy wychodzą dopiero przy montażu</span></div>
+          <div class="flex items-start gap-3"><div class="x-icon mt-0.5">✕</div><span class="text-gray-500 text-base">Brak optymalizacji układu arkuszy - <strong>zamawiasz za dużo lub za mało</strong>, odpady wliczone w cenę</span></div>
+        </div>
+      </div>
+
+      <!-- Right: Mansard -->
+      <div class="compare-card-right">
+        <div class="badge-rec">REKOMENDOWANY WYBÓR</div>
+        <div class="flex items-center gap-3 mb-6 mt-4">
+          <div class="w-10 h-10 bg-red-600 rounded-full flex items-center justify-content:center">
+            <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+          </div>
+          <div>
+            <div class="font-bold text-gray-900 text-xl">Mansard</div>
+            <div class="text-sm text-[#dc2626] font-semibold">Dopasowane rozwiązanie</div>
+          </div>
+        </div>
+        <div class="border-t border-gray-100 pt-6 space-y-6 mb-8">
+          <div class="flex items-start gap-3"><span class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-[#fef2f2] text-[#dc2626] text-xs font-bold flex-shrink-0 mt-0.5">✓</span><span class="text-gray-800 text-base"><strong>Cena zawsze za m²</strong> - wiesz dokładnie co płacisz, bez ukrytych przeliczników</span></div>
+          <div class="flex items-start gap-3"><span class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-[#fef2f2] text-[#dc2626] text-xs font-bold flex-shrink-0 mt-0.5">✓</span><span class="text-gray-800 text-base"><strong>Blacha cięta pod Twój dach</strong> - bez zakładów po długości, minimum odpadów, oszczędzasz nawet 10% materiału</span></div>
+          <div class="flex items-start gap-3"><span class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-[#fef2f2] text-[#dc2626] text-xs font-bold flex-shrink-0 mt-0.5">✓</span><span class="text-gray-800 text-base"><strong>Obróbki cięte pod wymiar każdej deski</strong> - nie w modułach, płacisz tylko za to co montujesz</span></div>
+          <div class="flex items-start gap-3"><span class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-[#fef2f2] text-[#dc2626] text-xs font-bold flex-shrink-0 mt-0.5">✓</span><span class="text-gray-800 text-base"><strong>Mierzymy dach na miejscu</strong> - przy skomplikowanych połaciach przyjeżdżamy i mierzymy sami, żeby mieć pewność że zamówisz dokładnie tyle ile potrzebujesz</span></div>
+          <div class="flex items-start gap-3"><span class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-[#fef2f2] text-[#dc2626] text-xs font-bold flex-shrink-0 mt-0.5">✓</span><span class="text-gray-800 text-base"><strong>Specjalistyczne oprogramowanie optymalizuje układ blachy</strong> - maksymalne wykorzystanie każdego arkusza, minimum odpadów</span></div>
+          <div class="flex items-start gap-3"><span class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-[#fef2f2] text-[#dc2626] text-xs font-bold flex-shrink-0 mt-0.5">✓</span><span class="text-gray-800 text-base"><strong>Wyłącznie blacha 0,5 mm</strong> - grubość gwarantowana, 0,4 mm traktujemy jako 2 gatunek</span></div>
+          <div class="flex items-start gap-3"><span class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-[#fef2f2] text-[#dc2626] text-xs font-bold flex-shrink-0 mt-0.5">✓</span><span class="text-gray-800 text-base"><strong>Własna produkcja w Sanoku</strong> - możesz przyjechać i zobaczyć na miejscu</span></div>
+        </div>
+        <a href="/kontakt/" class="btn-red w-full text-center block">Zapytaj o wycenę</a>
+      </div>
+
+    </div>
+    <div class="flex justify-center gap-8 mt-8">
+      <span class="flex items-center gap-2 text-sm text-gray-500"><span class="text-[#dc2626]">⊙</span> Polska produkcja</span>
+      <span class="flex items-center gap-2 text-sm text-gray-500"><span class="text-[#dc2626]">⊙</span> Stal Arvedi</span>
+      <span class="flex items-center gap-2 text-sm text-gray-500"><span class="text-[#dc2626]">⊙</span> Gwarancja jakości</span>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     6. OPINIE
+══════════════════════════════════════ -->
+<section class="compare-bg py-20 s2-overlay">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="text-center mb-12">
+      <div class="section-label mb-3">Opinie klientów</div>
+      <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 mb-2">Co mówią o nas klienci?</h2>
+    </div>
+
+    <!-- Row 1: 3 cards -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-5 mb-5">
+      <div class="review-card">
+        <div class="flex gap-0.5 mb-4"><span class="star-gold text-xl">★★★★★</span></div>
+        <p class="text-gray-600 text-base leading-relaxed mb-5">"W firmie kupowałem blachę, rynny i obróbki na kilka projektów. Jestem bardzo zadowolony, czas realizacji zamówień to mistrzostwo."</p>
+        <div class="flex justify-between items-end">
+          <div><div class="font-bold text-gray-900 text-sm">Stanisław Solarz</div><div class="text-gray-400 text-xs">lipiec 2023</div></div>
+          <div class="text-gray-400 text-xs">Google</div>
+        </div>
+      </div>
+      <div class="review-card">
+        <div class="flex gap-0.5 mb-4"><span class="star-gold text-xl">★★★★★</span></div>
+        <p class="text-gray-600 text-base leading-relaxed mb-5">"Szybko, sprawnie, profesjonalnie, bardzo zgrana ekipa. Parę słów i wiedzą o co chodzi klientowi."</p>
+        <div class="flex justify-between items-end">
+          <div><div class="font-bold text-gray-900 text-sm">OW Uroczysko Zwierzyń</div><div class="text-gray-400 text-xs">wrzesień 2023</div></div>
+          <div class="text-gray-400 text-xs">Google</div>
+        </div>
+      </div>
+      <div class="review-card">
+        <div class="flex gap-0.5 mb-4"><span class="star-gold text-xl">★★★★★</span></div>
+        <p class="text-gray-600 text-base leading-relaxed mb-5">"Świetny kontakt z klientem, na 5+. Polecam!"</p>
+        <div class="flex justify-between items-end">
+          <div><div class="font-bold text-gray-900 text-sm">Alan Michalak</div><div class="text-gray-400 text-xs">maj 2024</div></div>
+          <div class="text-gray-400 text-xs">Google</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Row 2: 2 cards centered -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-5 max-w-3xl mx-auto mb-10">
+      <div class="review-card">
+        <div class="flex gap-0.5 mb-4"><span class="star-gold text-xl">★★★★★</span></div>
+        <p class="text-gray-600 text-base leading-relaxed mb-5">"Szybko i tanio, sprawna i rzetelna obsługa."</p>
+        <div class="flex justify-between items-end">
+          <div><div class="font-bold text-gray-900 text-sm">Janina E.</div><div class="text-gray-400 text-xs">luty 2024</div></div>
+          <div class="text-gray-400 text-xs">Oferteo</div>
+        </div>
+      </div>
+      <div class="review-card">
+        <div class="flex gap-0.5 mb-4"><span class="star-gold text-xl">★★★★★</span></div>
+        <p class="text-gray-600 text-base leading-relaxed mb-5">"Świetne podejście do Klienta i super blachodachówki!"</p>
+        <div class="flex justify-between items-end">
+          <div><div class="font-bold text-gray-900 text-sm">Marcin K.</div><div class="text-gray-400 text-xs">październik 2023</div></div>
+          <div class="text-gray-400 text-xs">Oferteo</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Stats bar -->
+    <div class="flex flex-wrap justify-center mt-10">
+      <div class="inline-flex flex-wrap justify-center gap-6 bg-white rounded-2xl border border-gray-200 px-8 py-5" style="box-shadow:0 2px 16px rgba(0,0,0,0.06)">
+        <div class="flex items-center gap-3">
+          <div class="text-3xl font-bold text-gray-900">4.7</div>
+          <div class="text-left">
+            <div class="text-amber-400 text-lg leading-none">★★★★★</div>
+            <div class="text-gray-400 text-xs mt-0.5">Srednia ze wszystkich platform</div>
+          </div>
+        </div>
+        <div class="w-px bg-gray-200 self-stretch hidden sm:block"></div>
+        <div class="flex items-center gap-2.5">
+          <svg class="w-5 h-5 flex-shrink-0" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+          <div>
+            <div class="font-bold text-gray-900 text-sm">4.6 / 5 Google</div>
+            <div class="text-gray-400 text-xs">~57 opinii</div>
+          </div>
+        </div>
+        <div class="w-px bg-gray-200 self-stretch hidden sm:block"></div>
+        <div>
+          <div class="font-bold text-gray-900 text-sm">~70 opinii lacznie</div>
+          <div class="text-gray-400 text-xs">Google + Oferteo</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     6. CTA BANNER
+══════════════════════════════════════ -->
+<section style="background:#111827">
+  <div class="max-w-5xl mx-auto px-6 py-16 text-center">
+    <p class="section-label mb-3">Bezpłatna wycena</p>
+    <h2 class="text-3xl lg:text-4xl font-bold text-white mb-4" style="letter-spacing:-0.02em">Ile kosztuje Twój dach?</h2>
+    <p class="text-gray-400 text-base mb-8 max-w-md mx-auto leading-relaxed">Wypełnij formularz — w ciągu 24 godzin przygotujemy wycenę pokrycia, obróbek i rynien. Bez zobowiązań.</p>
+    <a href="/bezplatna-wycena/" class="btn-red inline-flex items-center gap-2" style="font-size:1rem;padding:14px 32px">
+      Wyceń dach teraz
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+    </a>
+    <div class="mt-12 pt-8 grid grid-cols-3 gap-6 max-w-lg mx-auto text-center" style="border-top:1px solid rgba(255,255,255,0.08)">
+      <div><div class="text-2xl font-bold text-white mb-0.5">3–5</div><div class="text-xs text-gray-500 uppercase tracking-wider">dni realizacji</div></div>
+      <div><div class="text-2xl font-bold text-white mb-0.5">24h</div><div class="text-xs text-gray-500 uppercase tracking-wider">odpowiedź</div></div>
+      <div><div class="text-2xl font-bold text-white mb-0.5">0 zł</div><div class="text-xs text-gray-500 uppercase tracking-wider">za wycenę</div></div>
+    </div>
+  </div>
+</section>
+
+<div id="site-footer"></div>
+
+<script src="/assets/nav.js"></script>
+<script src="/assets/footer.js"></script>
+
+<script>
+  /* ── YouTube hero video - pomijaj te fragmenty ── */
+  const SKIP = [
+    { start: 3,  end: 12 },
+    { start: 38, end: 72 },
+    { start: 85, end: 94 },
+  ];
+  let ytPlayer = null;
+  let watching = false;
+
+  function onYouTubeIframeAPIReady() {
+    ytPlayer = new YT.Player('heroVideo', {
+      videoId: '6fq9z4oQjWg',
+      playerVars: { autoplay:1, mute:1, controls:0, showinfo:0, rel:0, modestbranding:1, iv_load_policy:3, playsinline:1, loop:1, playlist:'6fq9z4oQjWg' },
+      events: {
+        onReady: function(e) {
+          e.target.playVideo();
+          setInterval(watchSkip, 200);
+        },
+        onStateChange: function(e) {
+          if (e.data === YT.PlayerState.PLAYING && !watching) {
+            watching = true;
+            setTimeout(() => {
+              const wrap = document.querySelector('.hero-video-wrap');
+              if (wrap) wrap.style.opacity = '1';
+            }, 600);
+          }
+        }
+      }
+    });
+  }
+
+  const overlay = document.querySelector('.hero-video-overlay');
+  let skipping = false;
+
+  function watchSkip() {
+    if (!ytPlayer || typeof ytPlayer.getCurrentTime !== 'function') return;
+    const t = ytPlayer.getCurrentTime();
+    for (const seg of SKIP) {
+      if (t >= seg.start && t < seg.end && !skipping) {
+        skipping = true;
+        overlay.style.transition = 'background .6s ease';
+        overlay.style.background = 'rgba(8,10,14,1)';
+        setTimeout(() => {
+          ytPlayer.seekTo(seg.end, true);
+          setTimeout(() => {
+            overlay.style.background = '';
+            skipping = false;
+          }, 200);
+        }, 650);
+        break;
+      }
+    }
+  }
+
+  (function() {
+    const tag = document.createElement('script');
+    tag.src = 'https://www.youtube.com/iframe_api';
+    document.head.appendChild(tag);
+  })();
+</script>
+
+</body>
+</html>
